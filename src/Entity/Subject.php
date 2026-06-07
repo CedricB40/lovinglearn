@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SubjectRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
 #[ORM\Table(name: 'subjects')]
@@ -16,15 +17,32 @@ class Subject
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom du sujet ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le nom doit faire au minimum {{ limit }} caractères',
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'La description ne peut pas être vide')]
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'La description doit faire au minimum {{ limit }} caractères'
+    )]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Le contenu ne peut pas être vide')]
+    #[Assert\Length(
+        min: 20,
+        minMessage: 'Le contenu doit faire au minimum {{ limit }} caractères'
+    )]
     private ?string $content = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -43,7 +61,6 @@ class Subject
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -55,7 +72,6 @@ class Subject
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 
@@ -67,7 +83,6 @@ class Subject
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -79,7 +94,6 @@ class Subject
     public function setContent(string $content): static
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -91,7 +105,6 @@ class Subject
     public function setImage(?string $image): static
     {
         $this->image = $image;
-
         return $this;
     }
 }

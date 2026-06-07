@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Subject{% endblock %}
+{% block title %}Nouveau sujet{% endblock %}
+{% block page_title %}➕ Nouveau sujet{% endblock %}
 
 {% block body %}
-    <h1>Create new Subject</h1>
 
-    {{ include('subject/_form.html.twig') }}
+    <div class="card rounded-4 border-0 shadow-sm p-4" style="max-width: 600px;">
+        {{ include('subject/_form.html.twig') }}
+        <a href="{{ path('app_subject_index') }}" class="btn btn-secondary rounded-3 mt-2">← Retour à la liste</a>
+    </div>
 
-    <a href="{{ path('app_subject_index') }}">back to list</a>
 {% endblock %}

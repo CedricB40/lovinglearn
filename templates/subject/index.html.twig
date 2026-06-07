@@ -1,43 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subject index{% endblock %}
+{% block title %}Gestion des sujets{% endblock %}
+{% block page_title %}📚 Gestion des sujets{% endblock %}
 
 {% block body %}
-    <h1>Subject index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>Description</th>
-                <th>Content</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for subject in subjects %}
-            <tr>
-                <td>{{ subject.id }}</td>
-                <td>{{ subject.name }}</td>
-                <td>{{ subject.slug }}</td>
-                <td>{{ subject.description }}</td>
-                <td>{{ subject.content }}</td>
-                <td>{{ subject.image }}</td>
-                <td>
-                    <a href="{{ path('app_subject_show', {'id': subject.id}) }}">show</a>
-                    <a href="{{ path('app_subject_edit', {'id': subject.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold mb-0">Liste des sujets</h5>
+        <a href="{{ path('app_subject_new') }}" class="btn btn-primary rounded-3 fw-bold">➕ Nouveau sujet</a>
+    </div>
 
-    <a href="{{ path('app_subject_new') }}">Create new</a>
+    <div class="card rounded-4 border-0 shadow-sm">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Slug</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <td>{{ subject.id }}</td>
+                    <td>{{ subject.name }}</td>
+                    <td>{{ subject.slug }}</td>
+                    <td>{{ subject.description|slice(0, 50) }}...</td>
+                    <td>{{ subject.image }}</td>
+                    <td>
+                        <a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="btn btn-sm btn-outline-primary rounded-3">👁️ Voir</a>
+                        <a href="{{ path('app_subject_edit', {'id': subject.id}) }}" class="btn btn-sm btn-outline-warning rounded-3">✏️ Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-3">Aucun sujet trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}
