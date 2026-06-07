@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil — LovingLearn{% endblock %}
+{% block page_title %}🎓 Tableau de bord{% endblock %}
+
+{% block body %}
+
+    {# Bannière de bienvenue #}
+    <div class="p-4 mb-4 text-white rounded-4" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+        <h2 class="fw-bold">Bienvenue sur LovingLearn ! 🎉</h2>
+        <p class="mb-0">Choisis un univers pour commencer à apprendre et jouer.</p>
+    </div>
+
+    {# Cartes univers #}
+    <h5 class="fw-bold mb-3">🌍 Les univers</h5>
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card text-center rounded-4 border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div style="font-size: 3rem;">🚀</div>
+                    <h6 class="fw-bold mt-2">Espace</h6>
+                    <small class="text-muted">0 sujets</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center rounded-4 border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div style="font-size: 3rem;">🦕</div>
+                    <h6 class="fw-bold mt-2">Dinosaures</h6>
+                    <small class="text-muted">0 sujets</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center rounded-4 border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div style="font-size: 3rem;">🦸</div>
+                    <h6 class="fw-bold mt-2">Super-héros</h6>
+                    <small class="text-muted">0 sujets</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center rounded-4 border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div style="font-size: 3rem;">❤️</div>
+                    <h6 class="fw-bold mt-2">Corps humain</h6>
+                    <small class="text-muted">0 sujets</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Boutons d'action #}
+    <h5 class="fw-bold mb-3">⭐ Que veux-tu faire ?</h5>
+    <div class="row g-3">
+        <div class="col-md-3">
+            <a href="#" class="btn w-100 py-3 rounded-4 fw-bold text-white" style="background:#4caf50; border-bottom: 4px solid #388e3c; font-size: 16px;">
+                📚 Apprendre
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" class="btn w-100 py-3 rounded-4 fw-bold text-white" style="background:#f44336; border-bottom: 4px solid #c62828; font-size: 16px;">
+                ❓ Quiz
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" class="btn w-100 py-3 rounded-4 fw-bold text-white" style="background:#2196f3; border-bottom: 4px solid #1565c0; font-size: 16px;">
+                🃏 Memory
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" class="btn w-100 py-3 rounded-4 fw-bold text-white" style="background:#ff9800; border-bottom: 4px solid #e65100; font-size: 16px;">
+                🏆 Classement
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
