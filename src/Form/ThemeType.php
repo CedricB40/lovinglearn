@@ -4,6 +4,10 @@ namespace App\Form;
 
 use App\Entity\Theme;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,11 +16,25 @@ class ThemeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('slug')
-            ->add('description')
-            ->add('image')
-            ->add('color')
+            ->add('name', TextType::class, [
+                'label' => 'Nom du thème',
+            ])
+            ->add('slug', TextType::class, [
+                'label' => 'Slug (URL)',
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+            ])
+            ->add('image', TextType::class, [
+                'label' => 'Image (emoji)',
+                'required' => false,
+            ])
+            ->add('color', ColorType::class, [
+                'label' => 'Couleur du thème',
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Enregistrer',
+            ])
         ;
     }
 
