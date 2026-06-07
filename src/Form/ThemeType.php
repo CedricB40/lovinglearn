@@ -15,27 +15,24 @@ class ThemeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('name', TextType::class, [
-                'label' => 'Nom du thème',
-            ])
-            ->add('slug', TextType::class, [
-                'label' => 'Slug (URL)',
-            ])
-            ->add('description', TextareaType::class, [
-                'label' => 'Description',
-            ])
-            ->add('image', TextType::class, [
-                'label' => 'Image (emoji)',
-                'required' => false,
-            ])
-            ->add('color', ColorType::class, [
-                'label' => 'Couleur du thème',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer',
-            ])
-        ;
+$builder
+    ->add('name', TextType::class, [
+        'label' => 'Nom du thème',
+    ])
+    ->add('description', TextareaType::class, [
+        'label' => 'Description',
+    ])
+    ->add('image', TextType::class, [
+        'label' => 'Image (emoji)',
+        'required' => false,
+    ])
+    ->add('color', ColorType::class, [
+        'label' => 'Couleur du thème',
+    ])
+    ->add('save', SubmitType::class, [
+        'label' => 'Enregistrer',
+    ])
+;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

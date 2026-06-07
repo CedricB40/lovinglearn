@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ThemeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
 #[ORM\Table(name: 'themes')]
@@ -16,18 +17,35 @@ class Theme
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom du thème ne peut pas être vide')]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le nom doit faire au minimum {{ limit }} caractères',
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'La description ne peut pas être vide')]
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'La description doit faire au minimum {{ limit }} caractères'
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[ORM\Column(length: 7)]
+    #[Assert\NotBlank(message: 'La couleur ne peut pas être vide')]
+    #[Assert\Regex(
+        pattern: '/^#[0-9A-Fa-f]{6}$/',
+        message: 'La couleur doit être un code hexadécimal valide (ex: #FF5733)'
+    )]
     private ?string $color = null;
 
     public function getId(): ?int
