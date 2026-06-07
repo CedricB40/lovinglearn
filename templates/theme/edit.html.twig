@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un thème{% endblock %}
+{% block page_title %}✏️ Modifier un thème{% endblock %}
+
+{% block body %}
+
+    <div class="card rounded-4 border-0 shadow-sm p-4" style="max-width: 600px;">
+        {{ include('theme/_form.html.twig', {'button_label': 'Modifier'}) }}
+        <a href="{{ path('app_theme_index') }}" class="btn btn-secondary rounded-3 mt-2">← Retour à la liste</a>
+        <hr>
+        {{ include('theme/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}

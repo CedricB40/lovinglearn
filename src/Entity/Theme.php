@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\UniverseRepository;
+use App\Repository\ThemeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UniverseRepository::class)]
-#[ORM\Table(name: 'universes')]
-class Universe
+#[ORM\Entity(repositoryClass: ThemeRepository::class)]
+#[ORM\Table(name: 'themes')]
+class Theme
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

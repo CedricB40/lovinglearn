@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des thèmes{% endblock %}
+{% block page_title %}⚙️ Gestion des thèmes{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold mb-0">Liste des thèmes</h5>
+        <a href="{{ path('app_theme_new') }}" class="btn btn-primary rounded-3 fw-bold">➕ Nouveau thème</a>
+    </div>
+
+    <div class="card rounded-4 border-0 shadow-sm">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Slug</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Couleur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for theme in themes %}
+                <tr>
+                    <td>{{ theme.id }}</td>
+                    <td>{{ theme.name }}</td>
+                    <td>{{ theme.slug }}</td>
+                    <td>{{ theme.description }}</td>
+                    <td>{{ theme.image }}</td>
+                    <td>
+                        <span class="badge rounded-pill" style="background: {{ theme.color }};">{{ theme.color }}</span>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_theme_show', {'id': theme.id}) }}" class="btn btn-sm btn-outline-primary rounded-3">👁️ Voir</a>
+                        <a href="{{ path('app_theme_edit', {'id': theme.id}) }}" class="btn btn-sm btn-outline-warning rounded-3">✏️ Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-3">Aucun thème trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
