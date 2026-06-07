@@ -31,6 +31,7 @@ $builder
     ])
     ->add('save', SubmitType::class, [
         'label' => 'Enregistrer',
+        'attr' => ['class' => 'btn btn-primary rounded-3 fw-bold'],
     ])
 ;
     }
