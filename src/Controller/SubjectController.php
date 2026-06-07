@@ -35,9 +35,6 @@ final class SubjectController extends AbstractController
             $slug = $slugger->slug($subject->getName())->lower();
             $subject->setSlug($slug);
 
-            // Génération automatique de la date de création
-            $subject->setCreatedAt(new \DateTimeImmutable());
-
             $entityManager->persist($subject);
             $entityManager->flush();
             $this->addFlash('success', 'Le sujet ' . $subject->getName() . ' a bien été créé !');
