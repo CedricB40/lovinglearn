@@ -184,3 +184,12 @@ Error: Erreur
 'Your password should be at least {{ limit }} characters': '__Your password should be at least {{ limit }} characters'
 'You should agree to our terms.': '__You should agree to our terms.'
 'Please enter your email': '__Please enter your email'
+registerForm.emailRequired: "Veuillez entrer votre adresse e-mail"
+registerForm.passwordRequired: "Veuillez entrer un mot de passe"
+registerForm.passwordMinLength: "Votre mot de passe doit contenir au moins {{ limit }} caractères"
+registerForm.firstnameRequired: "Veuillez entrer votre prénom"
+registerForm.firstnameMinLength: "Votre prénom doit contenir au moins {{ limit }} caractères"
+registerForm.firstnameMaxLength: "Votre prénom ne peut pas dépasser {{ limit }} caractères"
+registerForm.lastnameRequired: "Veuillez entrer votre nom"
+registerForm.lastnameMinLength: "Votre nom doit contenir au moins {{ limit }} caractères"
+registerForm.lastnameMaxLength: "Votre nom ne peut pas dépasser {{ limit }} caractères"

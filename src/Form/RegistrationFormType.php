@@ -17,19 +17,41 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('email')
+            ->add('email', options: [
+                'constraints' => [
+                    new NotBlank(message: 'registerForm.emailRequired'),
+                ],
+            ])
+            ->add('firstname', options: [
+                'constraints' => [
+                    new NotBlank(message: 'registerForm.firstnameRequired'),
+                    new Length(
+                        min: 2,
+                        minMessage: 'registerForm.firstnameMinLength',
+                        max: 50,
+                        maxMessage: 'registerForm.firstnameMaxLength',
+                    ),
+                ],
+            ])
+            ->add('lastname', options: [
+                'constraints' => [
+                    new NotBlank(message: 'registerForm.lastnameRequired'),
+                    new Length(
+                        min: 2,
+                        minMessage: 'registerForm.lastnameMinLength',
+                        max: 50,
+                        maxMessage: 'registerForm.lastnameMaxLength',
+                    ),
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
-                    new NotBlank(
-                        message: 'Please enter a password',
-                    ),
+                    new NotBlank(message: 'registerForm.passwordRequired'),
                     new Length(
                         min: 6,
-                        minMessage: 'Your password should be at least {{ limit }} characters',
+                        minMessage: 'registerForm.passwordMinLength',
                         max: 4096,
                     ),
                 ],
@@ -37,9 +59,7 @@ class RegistrationFormType extends AbstractType
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
-                    new IsTrue(
-                        message: 'You should agree to our terms.',
-                    ),
+                    new IsTrue(message: 'You should agree to our terms.'),
                 ],
             ])
         ;

@@ -2,15 +2,29 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class MemoryController extends AbstractController
 {
-    #[Route('/memory', name: 'app_memory')]
+    #[Route(path: '/memory', name: 'app_memory')]
     public function index(): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user) {
+            if (!$user->isVerified()) {
+                $this->addFlash('error', 'You must verify your email to play !');
+                return $this->redirectToRoute('app_home');
+            }
+        } else {
+            $this->addFlash('error', 'You must login to play !');
+            return $this->redirectToRoute('app_login');
+        }
+
         $planets = [
             ['name' => 'Soleil', 'image' => '1-soleil.png'],
             ['name' => 'Mercure', 'image' => '2-mercure.png'],

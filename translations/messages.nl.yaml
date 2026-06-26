@@ -13,6 +13,15 @@ registerForm:
     email: "E-mailadres"
     agreeTerms: "Akkoord met de voorwaarden"
     password: "Wachtwoord"
+    emailRequired: "Voer uw e-mailadres in"
+    passwordRequired: "Voer een wachtwoord in"
+    passwordMinLength: "Uw wachtwoord moet minimaal {{ limit }} tekens bevatten"
+    firstnameRequired: "Voer uw voornaam in"
+    firstnameMinLength: "Uw voornaam moet minimaal {{ limit }} tekens bevatten"
+    firstnameMaxLength: "Uw voornaam mag niet langer zijn dan {{ limit }} tekens"
+    lastnameRequired: "Voer uw naam in"
+    lastnameMinLength: "Uw naam moet minimaal {{ limit }} tekens bevatten"
+    lastnameMaxLength: "Uw naam mag niet langer zijn dan {{ limit }} tekens"
 
 loginForm:
     title: "Inloggen"
