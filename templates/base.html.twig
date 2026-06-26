@@ -81,10 +81,10 @@
 						{% if app.user %}
 							<span class="text-muted small">👋
 								{{ app.user.firstname }}</span>
-							<a href="{{ path('app_logout') }}" class="btn btn-sm btn-outline-danger">Se déconnecter</a>
+							<a href="{{ path('app_logout') }}" class="btn btn-sm btn-outline-danger">{{ 'navBar.logout' | trans }}</a>
 						{% else %}
-							<a href="{{ path('app_register') }}" class="btn btn-sm btn-outline-primary">S'inscrire</a>
-							<a href="{{ path('app_login') }}" class="btn btn-sm" style="background:#6c63ff; color:white;">Se connecter</a>
+							<a href="{{ path('app_register') }}" class="btn btn-sm btn-outline-primary">{{ 'navBar.signUp' | trans }}</a>
+							<a href="{{ path('app_login') }}" class="btn btn-sm" style="background:#6c63ff; color:white;">{{ 'navBar.login' | trans }}</a>
 						{% endif %}
 					</div>
 				</div>

@@ -1,0 +1,30 @@
+navBar:
+    home: "Accueil"
+    login: "Se connecter"
+    logout: "Se déconnecter"
+    signUp: "S'inscrire"
+    account: "Mon compte"
+
+registerForm:
+    titleRegister: "Inscription"
+    register: "S'enregistrer"
+    firstname: "Prénom"
+    lastname: "Nom"
+    email: "Adresse e-mail"
+    agreeTerms: "Accepter les conditions"
+    password: "Mot de passe"
+
+loginForm:
+    title: "Connexion"
+    email: "Adresse e-mail"
+    password: "Mot de passe"
+    forgotPassword: "Mot de passe oublié ?"
+    signIn: "Se connecter"
+
+resetPassword:
+    title: "Réinitialiser le mot de passe"
+    send: "Envoyer le mail de réinitialisation"
+    newPassword: "Nouveau mot de passe"
+    repeat: "Répéter le mot de passe"
+    reset: "Réinitialiser"
+    instruction: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."

@@ -1,0 +1,30 @@
+navBar:
+    home: "Startpagina"
+    login: "Inloggen"
+    logout: "Uitloggen"
+    signUp: "Registreren"
+    account: "Mijn account"
+
+registerForm:
+    titleRegister: "Registratie"
+    register: "Registreren"
+    firstname: "Voornaam"
+    lastname: "Naam"
+    email: "E-mailadres"
+    agreeTerms: "Akkoord met de voorwaarden"
+    password: "Wachtwoord"
+
+loginForm:
+    title: "Inloggen"
+    email: "E-mailadres"
+    password: "Wachtwoord"
+    forgotPassword: "Wachtwoord vergeten?"
+    signIn: "Inloggen"
+
+resetPassword:
+    title: "Wachtwoord opnieuw instellen"
+    send: "Reset e-mail versturen"
+    newPassword: "Nieuw wachtwoord"
+    repeat: "Wachtwoord herhalen"
+    reset: "Opnieuw instellen"
+    instruction: "Voer uw e-mailadres in en wij sturen u een link om uw wachtwoord opnieuw in te stellen."
