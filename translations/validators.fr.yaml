@@ -169,27 +169,18 @@ Error: Erreur
 'Please select a valid option.': 'Veuillez sélectionner une option valide.'
 'Please select a valid range.': 'Veuillez sélectionner une plage valide.'
 'Please enter a valid week.': 'Veuillez entrer une semaine valide.'
-'Le nom du sujet ne peut pas être vide': '__Le nom du sujet ne peut pas être vide'
-'Le nom doit faire au minimum {{ limit }} caractères': '__Le nom doit faire au minimum {{ limit }} caractères'
-'Le nom ne peut pas dépasser {{ limit }} caractères': '__Le nom ne peut pas dépasser {{ limit }} caractères'
-'La description ne peut pas être vide': '__La description ne peut pas être vide'
-'La description doit faire au minimum {{ limit }} caractères': '__La description doit faire au minimum {{ limit }} caractères'
-'Le contenu ne peut pas être vide': '__Le contenu ne peut pas être vide'
-'Le contenu doit faire au minimum {{ limit }} caractères': '__Le contenu doit faire au minimum {{ limit }} caractères'
-'Le nom du thème ne peut pas être vide': '__Le nom du thème ne peut pas être vide'
-'La couleur ne peut pas être vide': '__La couleur ne peut pas être vide'
-'La couleur doit être un code hexadécimal valide (ex: #FF5733)': '__La couleur doit être un code hexadécimal valide (ex: #FF5733)'
-'There is already an account with this email': '__There is already an account with this email'
-'Please enter a password': '__Please enter a password'
-'Your password should be at least {{ limit }} characters': '__Your password should be at least {{ limit }} characters'
-'You should agree to our terms.': '__You should agree to our terms.'
-'Please enter your email': '__Please enter your email'
-registerForm.emailRequired: "Veuillez entrer votre adresse e-mail"
-registerForm.passwordRequired: "Veuillez entrer un mot de passe"
-registerForm.passwordMinLength: "Votre mot de passe doit contenir au moins {{ limit }} caractères"
-registerForm.firstnameRequired: "Veuillez entrer votre prénom"
-registerForm.firstnameMinLength: "Votre prénom doit contenir au moins {{ limit }} caractères"
-registerForm.firstnameMaxLength: "Votre prénom ne peut pas dépasser {{ limit }} caractères"
-registerForm.lastnameRequired: "Veuillez entrer votre nom"
-registerForm.lastnameMinLength: "Votre nom doit contenir au moins {{ limit }} caractères"
-registerForm.lastnameMaxLength: "Votre nom ne peut pas dépasser {{ limit }} caractères"
+'Le nom du sujet ne peut pas être vide': 'Le nom du sujet ne peut pas être vide'
+'Le nom doit faire au minimum {{ limit }} caractères': 'Le nom doit faire au minimum {{ limit }} caractères'
+'Le nom ne peut pas dépasser {{ limit }} caractères': 'Le nom ne peut pas dépasser {{ limit }} caractères'
+'La description ne peut pas être vide': 'La description ne peut pas être vide'
+'La description doit faire au minimum {{ limit }} caractères': 'La description doit faire au minimum {{ limit }} caractères'
+'Le contenu ne peut pas être vide': 'Le contenu ne peut pas être vide'
+'Le contenu doit faire au minimum {{ limit }} caractères': 'Le contenu doit faire au minimum {{ limit }} caractères'
+'Le nom du thème ne peut pas être vide': 'Le nom du thème ne peut pas être vide'
+'La couleur ne peut pas être vide': 'La couleur ne peut pas être vide'
+'La couleur doit être un code hexadécimal valide (ex: #FF5733)': 'La couleur doit être un code hexadécimal valide (ex: #FF5733)'
+'There is already an account with this email': 'Il existe déjà un compte avec cet email'
+'Please enter a password': 'Veuillez entrer un mot de passe'
+'Your password should be at least {{ limit }} characters': 'Votre mot de passe doit contenir au moins {{ limit }} caractères'
+'You should agree to our terms.': 'Vous devez accepter nos conditions.'
+'Please enter your email': 'Veuillez entrer votre adresse e-mail'

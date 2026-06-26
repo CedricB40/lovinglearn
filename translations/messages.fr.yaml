@@ -13,13 +13,6 @@ registerForm:
     email: "Adresse e-mail"
     agreeTerms: "Accepter les conditions"
     password: "Mot de passe"
-    passwordMinLength: "Votre mot de passe doit contenir au moins {{ limit }} caractères"
-    passwordRequired: "Veuillez entrer un mot de passe"
-    firstnameRequired: "Veuillez entrer votre prénom"
-    firstnameMinLength: "Votre prénom doit contenir au moins {{ limit }} caractères"
-    lastnameRequired: "Veuillez entrer votre nom"
-    lastnameMinLength: "Votre nom doit contenir au moins {{ limit }} caractères"
-    emailRequired: "Veuillez entrer votre adresse e-mail"
 
 loginForm:
     title: "Connexion"
