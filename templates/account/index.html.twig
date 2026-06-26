@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte{% endblock %}
+{% block page_title %}👤 Mon Compte{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card rounded-4 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-4">📋 Mes informations</h5>
+
+                    <div class="mb-3">
+                        <small class="text-muted">Prénom</small>
+                        <p class="fw-bold mb-0">{{ app.user.firstname }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted">Nom</small>
+                        <p class="fw-bold mb-0">{{ app.user.lastname }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted">Email</small>
+                        <p class="fw-bold mb-0">{{ app.user.email }}</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted">Statut</small>
+                        <p class="fw-bold mb-0">
+                            {% if app.user.isVerified %}
+                                <span class="badge bg-success">✅ Vérifié</span>
+                            {% else %}
+                                <span class="badge bg-warning">⚠️ Non vérifié</span>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted">Rôle</small>
+                        <p class="fw-bold mb-0">
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
+                                <span class="badge bg-danger">👑 Admin</span>
+                            {% else %}
+                                <span class="badge bg-primary">👤 Utilisateur</span>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
