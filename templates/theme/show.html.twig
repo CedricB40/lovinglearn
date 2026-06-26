@@ -13,7 +13,7 @@
                     <td>{{ theme.id }}</td>
                 </tr>
                 <tr>
-                    <th>Nom</th>
+                    <th>{{ 'theme.index.name' | trans }}</th>
                     <td>{{ theme.name }}</td>
                 </tr>
                 <tr>
@@ -21,15 +21,15 @@
                     <td>{{ theme.slug }}</td>
                 </tr>
                 <tr>
-                    <th>Description</th>
+                    <th>{{ 'theme.index.description' | trans }}</th>
                     <td>{{ theme.description }}</td>
                 </tr>
                 <tr>
-                    <th>Image</th>
+                    <th>{{ 'theme.index.image' | trans }}</th>
                     <td>{{ theme.image }}</td>
                 </tr>
                 <tr>
-                    <th>Couleur</th>
+                    <th>{{ 'theme.index.color' | trans }}</th>
                     <td>
                         <span class="badge rounded-pill" style="background: {{ theme.color }};">{{ theme.color }}</span>
                     </td>
@@ -38,8 +38,8 @@
         </table>
 
         <div class="d-flex gap-2">
-            <a href="{{ path('app_theme_index') }}" class="btn btn-secondary rounded-3">← Retour à la liste</a>
-            <a href="{{ path('app_theme_edit', {'id': theme.id}) }}" class="btn btn-warning rounded-3">✏️ Modifier</a>
+            <a href="{{ path('app_theme_index') }}" class="btn btn-secondary rounded-3">{{ 'theme.show.back' | trans }}</a>
+            <a href="{{ path('app_theme_edit', {'id': theme.id}) }}" class="btn btn-warning rounded-3">✏️ {{ 'theme.index.edit' | trans }}</a>
         </div>
 
         <hr>

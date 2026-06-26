@@ -5,6 +5,93 @@ navBar:
     signUp: "S'inscrire"
     account: "Mon compte"
 
+sidebar:
+    tagline: "Plateforme éducative"
+    univers: "Univers"
+    admin: "Administration"
+
+home:
+    title: "Accueil — LovingLearn"
+    dashboard: "Tableau de bord"
+    welcome: "Bienvenue sur LovingLearn !"
+    subtitle: "Choisis un univers pour commencer à apprendre et jouer."
+    whatToDo: "Que veux-tu faire ?"
+    learn: "Apprendre"
+    quiz: "Quiz"
+    memory: "Memory"
+    ranking: "Classement"
+
+theme:
+    noSubject: "Aucun sujet disponible pour le moment."
+    index:
+        title: "Gestion des thèmes"
+        list: "Liste des thèmes"
+        new: "Nouveau thème"
+        name: "Nom"
+        description: "Description"
+        image: "Image"
+        color: "Couleur"
+        actions: "Actions"
+        show: "Voir"
+        edit: "Modifier"
+        empty: "Aucun thème trouvé"
+    show:
+        back: "Retour à la liste"
+    new:
+        title: "Nouveau thème"
+    edit:
+        title: "Modifier un thème"
+        button: "Modifier"
+    delete:
+        confirm: "Êtes-vous sûr de vouloir supprimer ce thème ?"
+        button: "Supprimer"
+
+account:
+    title: "Mon Compte"
+    myInfo: "Mes informations"
+    firstname: "Prénom"
+    lastname: "Nom"
+    email: "Email"
+    status: "Statut"
+    verified: "Vérifié"
+    notVerified: "Non vérifié"
+    role: "Rôle"
+    admin: "Admin"
+    user: "Utilisateur"
+
+memory:
+    title: "Memory - Espace"
+    pageTitle: "Memory - Système Solaire"
+    findPairs: "Retrouve les paires !"
+    moves: "Coups"
+    replay: "Rejouer"
+    victory: "Bravo ! Tu as trouvé toutes les paires en"
+
+subject:
+    index:
+        title: "Gestion des sujets"
+        list: "Liste des sujets"
+        new: "Nouveau sujet"
+        name: "Nom"
+        description: "Description"
+        image: "Image"
+        actions: "Actions"
+        show: "Voir"
+        edit: "Modifier"
+        empty: "Aucun sujet trouvé"
+    show:
+        learnMore: "En savoir plus"
+        edit: "Modifier"
+        back: "Retour à la liste"
+    new:
+        title: "Nouveau sujet"
+    edit:
+        title: "Modifier un sujet"
+        button: "Modifier"
+    delete:
+        confirm: "Êtes-vous sûr de vouloir supprimer ce sujet ?"
+        button: "Supprimer"
+
 registerForm:
     titleRegister: "Inscription"
     register: "S'enregistrer"
@@ -28,3 +115,19 @@ resetPassword:
     repeat: "Répéter le mot de passe"
     reset: "Réinitialiser"
     instruction: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+    checkEmail:
+        title: "Email de réinitialisation envoyé"
+        message: "Si un compte correspond à votre email, un lien de réinitialisation vient d'être envoyé."
+        spam: "Si vous ne recevez pas d'email, vérifiez vos spams ou"
+        tryAgain: "réessayez"
+
+registrationEmail:
+    title: "Bonjour ! Veuillez confirmer votre adresse e-mail !"
+    intro: "Veuillez confirmer votre adresse e-mail en cliquant sur le lien suivant :"
+    link: "Confirmer mon adresse e-mail"
+    cheers: "À bientôt !"
+
+resetPasswordEmail:
+    title: "Bonjour !"
+    intro: "Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant :"
+    cheers: "À bientôt !"

@@ -7,6 +7,7 @@ use App\Repository\SubjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class HomeController extends AbstractController
 {
@@ -21,12 +22,12 @@ class HomeController extends AbstractController
     }
 
     #[Route(path: '/theme/{slug}', name: 'app_theme_show_public')]
-    public function showTheme(string $slug, ThemeRepository $themeRepository, SubjectRepository $subjectRepository): Response
+    public function showTheme(string $slug, ThemeRepository $themeRepository, SubjectRepository $subjectRepository, TranslatorInterface $translator): Response
     {
         $theme = $themeRepository->findOneBy(['slug' => $slug]);
 
         if (!$theme) {
-            $this->addFlash('error', 'Thème introuvable !');
+            $this->addFlash('error', $translator->trans('flash.themeNotFound'));
             return $this->redirectToRoute('app_home');
         }
 

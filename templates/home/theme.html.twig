@@ -11,9 +11,9 @@
     </div>
 
     {% if subjects is empty %}
-        <div class="alert alert-info rounded-3">
-            Aucun sujet disponible pour le moment.
-        </div>
+    <div class="alert alert-info rounded-3">
+        {{ 'theme.noSubject' | trans }}
+    </div>
     {% else %}
         <div class="row g-3">
             {% for subject in subjects %}

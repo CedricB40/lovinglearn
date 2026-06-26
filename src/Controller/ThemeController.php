@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/theme')]
 final class ThemeController extends AbstractController
@@ -24,20 +25,19 @@ final class ThemeController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'app_theme_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, TranslatorInterface $translator): Response
     {
         $theme = new Theme();
         $form = $this->createForm(ThemeType::class, $theme);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Génération automatique du slug
             $slug = $slugger->slug($theme->getName())->lower();
             $theme->setSlug($slug);
 
             $entityManager->persist($theme);
             $entityManager->flush();
-            $this->addFlash('success', 'Le thème ' . $theme->getName() . ' a bien été créé !');
+            $this->addFlash('success', $translator->trans('flash.theme.created', ['%name%' => $theme->getName()]));
             return $this->redirectToRoute('app_theme_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,18 +56,17 @@ final class ThemeController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'app_theme_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Theme $theme, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Theme $theme, EntityManagerInterface $entityManager, SluggerInterface $slugger, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(ThemeType::class, $theme);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Mise à jour du slug si le nom change
             $slug = $slugger->slug($theme->getName())->lower();
             $theme->setSlug($slug);
 
             $entityManager->flush();
-            $this->addFlash('success', 'Le thème ' . $theme->getName() . ' a bien été modifié !');
+            $this->addFlash('success', $translator->trans('flash.theme.updated', ['%name%' => $theme->getName()]));
             return $this->redirectToRoute('app_theme_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -78,12 +77,12 @@ final class ThemeController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'app_theme_delete', methods: ['POST'])]
-    public function delete(Request $request, Theme $theme, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Theme $theme, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {
         if ($this->isCsrfTokenValid('delete'.$theme->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($theme);
             $entityManager->flush();
-            $this->addFlash('success', 'Le thème a bien été supprimé !');
+            $this->addFlash('success', $translator->trans('flash.theme.deleted'));
         }
 
         return $this->redirectToRoute('app_theme_index', [], Response::HTTP_SEE_OTHER);

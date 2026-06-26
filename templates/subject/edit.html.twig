@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un sujet{% endblock %}
-{% block page_title %}✏️ Modifier un sujet{% endblock %}
+{% block title %}{{ 'subject.edit.title' | trans }}{% endblock %}
+{% block page_title %}✏️ {{ 'subject.edit.title' | trans }}{% endblock %}
 
 {% block body %}
 
     <div class="card rounded-4 border-0 shadow-sm p-4" style="max-width: 600px;">
-        {{ include('subject/_form.html.twig', {'button_label': 'Modifier'}) }}
-        <a href="{{ path('app_subject_index') }}" class="btn btn-secondary rounded-3 mt-2">← Retour à la liste</a>
+        {{ include('subject/_form.html.twig', {'button_label': 'subject.edit.button' | trans}) }}
+        <a href="{{ path('app_subject_index') }}" class="btn btn-secondary rounded-3 mt-2"> {{ 'subject.show.back' | trans }}</a>
         <hr>
         {{ include('subject/_delete_form.html.twig') }}
     </div>

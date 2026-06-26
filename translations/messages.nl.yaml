@@ -5,6 +5,93 @@ navBar:
     signUp: "Registreren"
     account: "Mijn account"
 
+sidebar:
+    tagline: "Educatief platform"
+    univers: "Universum"
+    admin: "Beheer"
+
+home:
+    title: "Startpagina — LovingLearn"
+    dashboard: "Dashboard"
+    welcome: "Welkom op LovingLearn !"
+    subtitle: "Kies een universum om te beginnen leren en spelen."
+    whatToDo: "Wat wil je doen ?"
+    learn: "Leren"
+    quiz: "Quiz"
+    memory: "Memory"
+    ranking: "Ranglijst"
+
+theme:
+    noSubject: "Geen onderwerpen beschikbaar voor het moment."
+    index:
+        title: "Beheer thema's"
+        list: "Lijst van thema's"
+        new: "Nieuw thema"
+        name: "Naam"
+        description: "Beschrijving"
+        image: "Afbeelding"
+        color: "Kleur"
+        actions: "Acties"
+        show: "Bekijken"
+        edit: "Bewerken"
+        empty: "Geen thema's gevonden"
+    show:
+        back: "Terug naar de lijst"
+    new:
+        title: "Nieuw thema"
+    edit:
+        title: "Thema bewerken"
+        button: "Bewerken"
+    delete:
+        confirm: "Weet u zeker dat u dit thema wilt verwijderen?"
+        button: "Verwijderen"
+
+account:
+    title: "Mijn Account"
+    myInfo: "Mijn informatie"
+    firstname: "Voornaam"
+    lastname: "Naam"
+    email: "E-mail"
+    status: "Status"
+    verified: "Geverifieerd"
+    notVerified: "Niet geverifieerd"
+    role: "Rol"
+    admin: "Beheerder"
+    user: "Gebruiker"
+
+memory:
+    title: "Memory - Ruimte"
+    pageTitle: "Memory - Zonnestelsel"
+    findPairs: "Vind de paren !"
+    moves: "Zetten"
+    replay: "Opnieuw spelen"
+    victory: "Bravo ! Je hebt alle paren gevonden in"
+
+subject:
+    index:
+        title: "Beheer onderwerpen"
+        list: "Lijst van onderwerpen"
+        new: "Nieuw onderwerp"
+        name: "Naam"
+        description: "Beschrijving"
+        image: "Afbeelding"
+        actions: "Acties"
+        show: "Bekijken"
+        edit: "Bewerken"
+        empty: "Geen onderwerpen gevonden"
+    show:
+        learnMore: "Meer weten"
+        edit: "Bewerken"
+        back: "Terug naar de lijst"
+    new:
+        title: "Nieuw onderwerp"
+    edit:
+        title: "Onderwerp bewerken"
+        button: "Bewerken"
+    delete:
+        confirm: "Weet u zeker dat u dit onderwerp wilt verwijderen?"
+        button: "Verwijderen"
+
 registerForm:
     titleRegister: "Registratie"
     register: "Registreren"
@@ -28,3 +115,19 @@ resetPassword:
     repeat: "Wachtwoord herhalen"
     reset: "Opnieuw instellen"
     instruction: "Voer uw e-mailadres in en wij sturen u een link om uw wachtwoord opnieuw in te stellen."
+    checkEmail:
+        title: "Reset e-mail verzonden"
+        message: "Als er een account overeenkomt met uw e-mailadres, is er een resetlink verzonden."
+        spam: "Als u geen e-mail ontvangt, controleer dan uw spammap of"
+        tryAgain: "probeer opnieuw"
+
+registrationEmail:
+    title: "Hallo! Bevestig uw e-mailadres!"
+    intro: "Bevestig uw e-mailadres door op de volgende link te klikken:"
+    link: "Bevestig mijn e-mailadres"
+    cheers: "Tot ziens!"
+
+resetPasswordEmail:
+    title: "Hallo!"
+    intro: "Om uw wachtwoord te herstellen, klik op de volgende link:"
+    cheers: "Tot ziens!"

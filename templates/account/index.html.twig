@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Compte{% endblock %}
-{% block page_title %}👤 Mon Compte{% endblock %}
+{% block title %}{{ 'account.title' | trans }}{% endblock %}
+{% block page_title %}👤 {{ 'account.title' | trans }}{% endblock %}
 
 {% block body %}
 
@@ -9,41 +9,41 @@
         <div class="col-md-6">
             <div class="card rounded-4 border-0 shadow-sm">
                 <div class="card-body p-4">
-                    <h5 class="fw-bold mb-4">📋 Mes informations</h5>
+                    <h5 class="fw-bold mb-4">📋 {{ 'account.myInfo' | trans }}</h5>
 
                     <div class="mb-3">
-                        <small class="text-muted">Prénom</small>
+                        <small class="text-muted">{{ 'account.firstname' | trans }}</small>
                         <p class="fw-bold mb-0">{{ app.user.firstname }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <small class="text-muted">Nom</small>
+                        <small class="text-muted">{{ 'account.lastname' | trans }}</small>
                         <p class="fw-bold mb-0">{{ app.user.lastname }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <small class="text-muted">Email</small>
+                        <small class="text-muted">{{ 'account.email' | trans }}</small>
                         <p class="fw-bold mb-0">{{ app.user.email }}</p>
                     </div>
 
                     <div class="mb-3">
-                        <small class="text-muted">Statut</small>
+                        <small class="text-muted">{{ 'account.status' | trans }}</small>
                         <p class="fw-bold mb-0">
                             {% if app.user.isVerified %}
-                                <span class="badge bg-success">✅ Vérifié</span>
+                                <span class="badge bg-success">✅ {{ 'account.verified' | trans }}</span>
                             {% else %}
-                                <span class="badge bg-warning">⚠️ Non vérifié</span>
+                                <span class="badge bg-warning">⚠️ {{ 'account.notVerified' | trans }}</span>
                             {% endif %}
                         </p>
                     </div>
 
                     <div class="mb-3">
-                        <small class="text-muted">Rôle</small>
+                        <small class="text-muted">{{ 'account.role' | trans }}</small>
                         <p class="fw-bold mb-0">
                             {% if 'ROLE_ADMIN' in app.user.roles %}
-                                <span class="badge bg-danger">👑 Admin</span>
+                                <span class="badge bg-danger">👑 {{ 'account.admin' | trans }}</span>
                             {% else %}
-                                <span class="badge bg-primary">👤 Utilisateur</span>
+                                <span class="badge bg-primary">👤 {{ 'account.user' | trans }}</span>
                             {% endif %}
                         </p>
                     </div>

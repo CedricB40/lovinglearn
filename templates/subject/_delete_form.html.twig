@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_subject_delete', {'id': subject.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ?');">
+<form method="post" action="{{ path('app_subject_delete', {'id': subject.id}) }}" onsubmit="return confirm('{{ 'subject.delete.confirm' | trans }}');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ subject.id) }}">
-    <button class="btn btn-danger rounded-3">🗑️ Supprimer</button>
+    <button class="btn btn-danger rounded-3">🗑️ {{ 'subject.delete.button' | trans }}</button>
 </form>

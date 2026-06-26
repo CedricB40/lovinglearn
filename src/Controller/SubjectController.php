@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/subject')]
 final class SubjectController extends AbstractController
@@ -24,20 +25,19 @@ final class SubjectController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'app_subject_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, TranslatorInterface $translator): Response
     {
         $subject = new Subject();
         $form = $this->createForm(SubjectType::class, $subject);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Génération automatique du slug
             $slug = $slugger->slug($subject->getName())->lower();
             $subject->setSlug($slug);
 
             $entityManager->persist($subject);
             $entityManager->flush();
-            $this->addFlash('success', 'Le sujet ' . $subject->getName() . ' a bien été créé !');
+            $this->addFlash('success', $translator->trans('flash.subject.created', ['%name%' => $subject->getName()]));
             return $this->redirectToRoute('app_subject_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,18 +56,17 @@ final class SubjectController extends AbstractController
     }
 
     #[Route(path: '/{id}/edit', name: 'app_subject_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Subject $subject, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Subject $subject, EntityManagerInterface $entityManager, SluggerInterface $slugger, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(SubjectType::class, $subject);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Mise à jour du slug si le nom change
             $slug = $slugger->slug($subject->getName())->lower();
             $subject->setSlug($slug);
 
             $entityManager->flush();
-            $this->addFlash('success', 'Le sujet ' . $subject->getName() . ' a bien été modifié !');
+            $this->addFlash('success', $translator->trans('flash.subject.updated', ['%name%' => $subject->getName()]));
             return $this->redirectToRoute('app_subject_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -78,12 +77,12 @@ final class SubjectController extends AbstractController
     }
 
     #[Route(path: '/{id}', name: 'app_subject_delete', methods: ['POST'])]
-    public function delete(Request $request, Subject $subject, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Subject $subject, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$subject->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $subject->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($subject);
             $entityManager->flush();
-            $this->addFlash('success', 'Le sujet a bien été supprimé !');
+            $this->addFlash('success', $translator->trans('flash.subject.deleted'));
         }
 
         return $this->redirectToRoute('app_subject_index', [], Response::HTTP_SEE_OTHER);

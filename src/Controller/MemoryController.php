@@ -6,22 +6,23 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class MemoryController extends AbstractController
 {
     #[Route(path: '/memory', name: 'app_memory')]
-    public function index(): Response
+    public function index(TranslatorInterface $translator): Response
     {
         /** @var User $user */
         $user = $this->getUser();
 
         if ($user) {
             if (!$user->isVerified()) {
-                $this->addFlash('error', 'You must verify your email to play !');
+                $this->addFlash('error', $translator->trans('flash.mustVerifyEmail'));
                 return $this->redirectToRoute('app_home');
             }
         } else {
-            $this->addFlash('error', 'You must login to play !');
+            $this->addFlash('error', $translator->trans('flash.mustLogin'));
             return $this->redirectToRoute('app_login');
         }
 

@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Memory - Espace{% endblock %}
-
-{% block page_title %}🚀 Memory - Système Solaire{% endblock %}
+{% block title %}{{ 'memory.title' | trans }}{% endblock %}
+{% block page_title %}🚀 {{ 'memory.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Retrouve les paires !</h2>
+    <h2>{{ 'memory.findPairs' | trans }}</h2>
     <div class="d-flex gap-3 align-items-center">
-        <span class="badge rounded-pill bg-primary fs-6">Coups : <span id="counter">0</span></span>
-        <button class="btn btn-outline-secondary btn-sm" onclick="restartGame()">🔄 Rejouer</button>
+        <span class="badge rounded-pill bg-primary fs-6">{{ 'memory.moves' | trans }} : <span id="counter">0</span></span>
+        <button class="btn btn-outline-secondary btn-sm" onclick="restartGame()">🔄 {{ 'memory.replay' | trans }}</button>
     </div>
 </div>
 
@@ -19,7 +18,7 @@
 
 <div id="victory-message" class="text-center mt-4 d-none">
     <div class="alert alert-success fs-4">
-        🎉 Bravo ! Tu as trouvé toutes les paires en <strong><span id="final-counter"></span></strong> coups !
+        🎉 {{ 'memory.victory' | trans }} <strong><span id="final-counter"></span></strong> {{ 'memory.moves' | trans }} !
     </div>
 </div>
 
@@ -36,13 +35,10 @@
     let lockBoard = false;
 
     function createCards() {
-        // Créer les paires : 1 carte image + 1 carte nom pour chaque planète
         planets.forEach(planet => {
             cards.push({ type: 'image', value: planet.name, image: planet.image });
             cards.push({ type: 'name', value: planet.name, image: planet.image });
         });
-
-        // Mélanger les cartes
         cards.sort(() => Math.random() - 0.5);
     }
 

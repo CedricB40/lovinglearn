@@ -1,23 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ 'registerForm.titleRegister' | trans }}{% endblock %}
+{% block page_title %}{{ 'registerForm.titleRegister' | trans }}{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-<h1>{{ 'registerForm.titleRegister' | trans }}</h1>
+    <h1>{{ 'registerForm.titleRegister' | trans }}</h1>
 
-{{ form_errors(registrationForm) }}
+    {{ form_errors(registrationForm) }}
 
-{{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email, { label: 'registerForm.email' | trans }) }}
-    {{ form_row(registrationForm.firstname, { label: 'registerForm.firstname' | trans }) }}
-    {{ form_row(registrationForm.lastname, { label: 'registerForm.lastname' | trans }) }}
-    {{ form_row(registrationForm.plainPassword, { label: 'registerForm.password' | trans }) }}
-    {{ form_row(registrationForm.agreeTerms, { label: 'registerForm.agreeTerms' | trans }) }}
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, { label: 'registerForm.email' | trans }) }}
+        {{ form_row(registrationForm.firstname, { label: 'registerForm.firstname' | trans }) }}
+        {{ form_row(registrationForm.lastname, { label: 'registerForm.lastname' | trans }) }}
+        {{ form_row(registrationForm.plainPassword, { label: 'registerForm.password' | trans }) }}
+        {{ form_row(registrationForm.agreeTerms, { label: 'registerForm.agreeTerms' | trans }) }}
 
-    <button type="submit" class="btn">{{ 'registerForm.register' | trans }}</button>
-{{ form_end(registrationForm) }}
+        <button type="submit" class="btn">{{ 'registerForm.register' | trans }}</button>
+    {{ form_end(registrationForm) }}
 {% endblock %}
