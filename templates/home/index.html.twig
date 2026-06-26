@@ -11,25 +11,7 @@
         <p class="mb-0">Choisis un univers pour commencer à apprendre et jouer.</p>
     </div>
 
-    {# Cartes thèmes dynamiques #}
-    <h5 class="fw-bold mb-3">🌍 Les thèmes</h5>
-    <div class="row g-3 mb-4">
-        {% for theme in themes %}
-            <div class="col-md-3">
-                <div class="card text-center rounded-4 border-0 shadow-sm h-100">
-                    <div class="card-body">
-                        <div style="font-size: 3rem;">{{ theme.image ?? '🌍' }}</div>
-                        <h6 class="fw-bold mt-2">{{ theme.name }}</h6>
-                        <small class="text-muted">0 sujets</small>
-                    </div>
-                </div>
-            </div>
-        {% else %}
-            <div class="col-12">
-                <p class="text-muted">Aucun thème disponible pour le moment.</p>
-            </div>
-        {% endfor %}
-    </div>
+
 
     {# Boutons d'action #}
     <h5 class="fw-bold mb-3">⭐ Que veux-tu faire ?</h5>
