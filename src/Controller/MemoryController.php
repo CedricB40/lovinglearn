@@ -3,15 +3,39 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-final class MemoryController extends AbstractController
+class MemoryController extends AbstractController
 {
     #[Route(path: '/memory', name: 'app_memory')]
-    public function index(TranslatorInterface $translator): Response
+    public function select(ThemeRepository $themeRepository, TranslatorInterface $translator): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($user) {
+            if (!$user->isVerified()) {
+                $this->addFlash('error', $translator->trans('flash.mustVerifyEmail'));
+                return $this->redirectToRoute('app_home');
+            }
+        } else {
+            $this->addFlash('error', $translator->trans('flash.mustLogin'));
+            return $this->redirectToRoute('app_login');
+        }
+
+        $themes = $themeRepository->findAll();
+
+        return $this->render('memory/select.html.twig', [
+            'themes' => $themes,
+        ]);
+    }
+
+    #[Route(path: '/memory/{slug}', name: 'app_memory_play')]
+    public function index(string $slug, TranslatorInterface $translator): Response
     {
         /** @var User $user */
         $user = $this->getUser();

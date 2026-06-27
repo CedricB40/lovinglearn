@@ -66,6 +66,11 @@ memory:
     moves: "Zetten"
     replay: "Opnieuw spelen"
     victory: "Bravo ! Je hebt alle paren gevonden in"
+    select:
+        title: "Kies een Memory"
+        welcome: "Welk Memory wil je spelen ?"
+        subtitle: "Kies een thema om te beginnen spelen !"
+        play: "Spelen"
 
 subject:
     index:
@@ -156,3 +161,4 @@ admin:
     subjects: "Onderwerpen"
     subjectsDescription: "Beheer de onderwerpen van het platform"
     manageSubjects: "Onderwerpen beheren"
+

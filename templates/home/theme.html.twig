@@ -21,10 +21,9 @@
                     <a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="text-decoration-none">
                         <div class="card rounded-4 border-0 shadow-sm text-center p-3 h-100">
                             {% if subject.image %}
-                                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}"
-                                     style="width: 100px; height: 100px; object-fit: contain; margin: 0 auto;">
+                                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image">
                             {% else %}
-                                <div style="font-size: 3rem;">🌍</div>
+                                <div class="subject-emoji">🌍</div>
                             {% endif %}
                             <h6 class="fw-bold mt-2">{{ subject.name }}</h6>
                             <small class="text-muted">{{ subject.description }}</small>

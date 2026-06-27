@@ -66,6 +66,11 @@ memory:
     moves: "Coups"
     replay: "Rejouer"
     victory: "Bravo ! Tu as trouvé toutes les paires en"
+    select:
+        title: "Choisir un Memory"
+        welcome: "Quel Memory veux-tu jouer ?"
+        subtitle: "Choisis un thème pour commencer à jouer !"
+        play: "Jouer"
 
 subject:
     index:
@@ -156,3 +161,4 @@ admin:
     subjects: "Sujets"
     subjectsDescription: "Gérer les sujets de la plateforme"
     manageSubjects: "Gérer les sujets"
+

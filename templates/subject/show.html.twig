@@ -11,14 +11,13 @@
     <div class="col-md-4">
         <div class="card rounded-4 border-0 shadow-sm text-center p-4">
             {% if subject.image %}
-                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}"
-                     style="width: 180px; height: 180px; object-fit: contain; margin: 0 auto;">
+                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image-lg">
             {% else %}
-                <div style="font-size: 5rem;">🌍</div>
+                <div class="subject-emoji-lg">🌍</div>
             {% endif %}
             <h3 class="fw-bold mt-3">{{ subject.name }}</h3>
             <p class="text-muted">{{ subject.description }}</p>
-            <span class="badge rounded-pill" style="background:#6c63ff; color:white;">
+            <span class="badge rounded-pill badge-theme">
                 {{ subject.theme.name }}
             </span>
         </div>
@@ -28,7 +27,7 @@
     <div class="col-md-8">
         <div class="card rounded-4 border-0 shadow-sm p-4 h-100">
             <h5 class="fw-bold mb-3">📖 {{ 'subject.show.learnMore' | trans }}</h5>
-            <p class="text-muted" style="line-height: 1.8;">{{ subject.content }}</p>
+            <p class="text-muted subject-content">{{ subject.content }}</p>
         </div>
     </div>
 

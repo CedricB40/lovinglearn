@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'memory.select.title' | trans }}{% endblock %}
+{% block page_title %}🃏 {{ 'memory.select.title' | trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="p-4 mb-4 text-white rounded-4 banner-welcome">
+        <h2 class="fw-bold">🃏 {{ 'memory.select.welcome' | trans }}</h2>
+        <p class="mb-0">{{ 'memory.select.subtitle' | trans }}</p>
+    </div>
+
+    <div class="row g-4">
+        {% for theme in themes %}
+            <div class="col-md-3">
+                <a href="{{ path('app_memory_play', {'slug': theme.slug}) }}" class="text-decoration-none">
+                    <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100">
+                        <div class="subject-emoji">{{ theme.image }}</div>
+                        <h5 class="fw-bold mt-3">{{ theme.name }}</h5>
+                        <p class="text-muted small">{{ theme.description }}</p>
+                        <div class="mt-auto">
+                            <span class="badge rounded-pill badge-theme">
+                                {{ 'memory.select.play' | trans }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
