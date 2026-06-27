@@ -4,17 +4,20 @@
     --accent: #F59E0B;
     --success: #10B981;
     --danger: #EF4444;
-    --bg: #F8FAFC;
+    --bg: #0F0F1A;
+    --bg-2: #1a1040;
     --sidebar-bg: #4F46E5;
     --text: #1E293B;
     --text-muted: #64748B;
     --radius: 16px;
 }
 
+/* ===== BASE ===== */
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+    min-height: 100vh;
+    color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,10 +25,47 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
+/* ===== SIDEBAR ===== */
 aside {
-    background-color: var(--sidebar-bg) !important;
+    background: rgba(79, 70, 229, 0.15) !important;
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: rgba(79, 70, 229, 0.3);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-tagline {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-hr {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-admin {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white;
+}
+
+.topbar h5 {
+    color: white;
+}
+
+/* ===== BOUTONS ===== */
 .btn-primary {
     background-color: var(--primary);
     border-color: var(--primary-dark);
@@ -39,17 +79,6 @@ aside {
     background-color: var(--primary-dark);
     border-color: var(--primary-dark);
 }
-
-.card {
-    border-radius: var(--radius) !important;
-}
-
-/* Bannière home */
-.banner-welcome {
-    background: linear-gradient(135deg, var(--primary), #764ba2);
-}
-
-/* Boutons d'action home */
 
 .btn-action-green {
     background: #4caf50 !important;
@@ -75,30 +104,40 @@ aside {
     font-size: 16px;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 240px;
-    flex-shrink: 0;
-    background-color: var(--primary);
+/* ===== CARTES ===== */
+.card {
+    border-radius: var(--radius) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
 }
 
-.sidebar-tagline {
-    color: rgba(255,255,255,0.6);
+/* ===== TABLEAUX ===== */
+.table {
+    color: white !important;
 }
 
-.sidebar-hr {
-    border-color: rgba(255,255,255,0.2);
+.table-light {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
 }
 
-.sidebar-admin {
-    color: rgba(255,255,255,0.6);
+.table-hover tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
 }
 
-/* Topbar */
-.topbar {
-    height: 60px;
+/* ===== TEXTE ===== */
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
+/* ===== BANNIÈRE HOME ===== */
+.banner-welcome {
+    background: linear-gradient(135deg, var(--primary), var(--purple));
+}
+
+/* ===== SUJETS ===== */
 .subject-image {
     width: 100px;
     height: 100px;
@@ -111,7 +150,6 @@ aside {
     font-size: 3rem;
 }
 
-/* Subject show */
 .subject-image-lg {
     width: 180px;
     height: 180px;
@@ -133,10 +171,10 @@ aside {
     line-height: 1.8;
 }
 
-/* Memory game */
+/* ===== MEMORY GAME ===== */
 .memory-card {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     cursor: pointer;
     perspective: 1000px;
 }
@@ -164,7 +202,7 @@ aside {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .card-front {
@@ -179,8 +217,8 @@ aside {
 }
 
 .card-back img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
 }
 
@@ -193,6 +231,30 @@ aside {
 }
 
 .memory-card.matched .card-back {
-    background: #e8f5e9;
+    background: rgba(16, 185, 129, 0.2);
     border-color: var(--success);
+}
+
+/* ===== ÉTOILES ===== */
+#stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+    opacity: 0.7;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.3); }
 }
