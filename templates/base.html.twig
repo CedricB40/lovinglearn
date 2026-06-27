@@ -4,7 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
-			{% block title %}LovingLearn{% endblock %}
+			{% block title %}LovingLearn
+			{% endblock %}
 		</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -12,10 +13,12 @@
 	</head>
 	<body>
 
-		<div class="d-flex min-vh-100">
+		<div
+			class="d-flex min-vh-100">
 
 			{# SIDEBAR #}
-			<aside class="sidebar">
+			<aside
+				class="sidebar">
 
 				{# Logo #}
 				<div class="p-3 border-bottom border-white border-opacity-25">
@@ -31,7 +34,8 @@
 					{% if themes is defined %}
 						{% for theme in themes %}
 							<a href="{{ path('app_theme_show_public', {'slug': theme.slug}) }}" class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold">
-								<span>{{ theme.image }} {{ theme.name }}</span>
+								<span>{{ theme.image }}
+									{{ theme.name }}</span>
 								<span>▸</span>
 							</a>
 						{% endfor %}
@@ -41,7 +45,8 @@
 
 					{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
 						<a href="{{ path('app_admin') }}" class="d-flex align-items-center text-decoration-none px-3 py-2 rounded-3 fw-bold sidebar-admin">
-							<span>⚙️ {{ 'sidebar.admin' | trans }}</span>
+							<span>⚙️
+								{{ 'sidebar.admin' | trans }}</span>
 						</a>
 					{% endif %}
 				</nav>
@@ -49,12 +54,14 @@
 			</aside>
 
 			{# MAIN #}
-			<div class="flex-grow-1 d-flex flex-column">
+			<div
+				class="flex-grow-1 d-flex flex-column">
 
 				{# TOPBAR #}
 				<div class="topbar bg-white border-bottom px-4 d-flex align-items-center justify-content-between">
 					<h5 class="fw-bold mb-0">
-						{% block page_title %}Tableau de bord{% endblock %}
+						{% block page_title %}Tableau de bord
+						{% endblock %}
 					</h5>
 					<div class="d-flex gap-2 align-items-center">
 						{% if app.user %}
@@ -68,14 +75,17 @@
 				</div>
 
 				{# CONTENU #}
-				<div class="p-4 flex-grow-1">
+				<div
+					class="p-4 flex-grow-1">
 
 					{# Flash messages #}
 					{% for message in app.flashes('success') %}
-						<div class="alert alert-success rounded-3">✅ {{ message }}</div>
+						<div class="alert alert-success rounded-3">✅
+							{{ message }}</div>
 					{% endfor %}
 					{% for message in app.flashes('error') %}
-						<div class="alert alert-danger rounded-3">❌ {{ message }}</div>
+						<div class="alert alert-danger rounded-3">❌
+							{{ message }}</div>
 					{% endfor %}
 
 					{% block body %}{% endblock %}
@@ -88,5 +98,26 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		{% block javascripts %}{% endblock %}
+
+		<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.9/dist/lenis.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+		<script>
+				// Lenis - scroll fluide
+				const lenis = new Lenis();
+				function raf(time) {
+				lenis.raf(time);
+				requestAnimationFrame(raf);
+				}
+				requestAnimationFrame(raf);
+
+				// GSAP - animation d'apparition au chargement
+				gsap.from('.card', {
+				duration: 0.6,
+				opacity: 0,
+				y: 30,
+				stagger: 0.1,
+				ease: 'power2.out'
+				});
+		</script>
 	</body>
 </html>
