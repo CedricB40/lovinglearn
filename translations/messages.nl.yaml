@@ -133,6 +133,7 @@ resetPasswordEmail:
     cheers: "Tot ziens!"
 
 flash:
+    accessDenied: "U heeft geen toegang tot deze pagina !"
     mustLogin: "U moet ingelogd zijn !"
     alreadyConnected: "U bent al ingelogd !"
     mustVerifyEmail: "U moet uw e-mail verifiëren om te spelen !"
@@ -146,3 +147,12 @@ flash:
         created: "Het thema %name% is aangemaakt !"
         updated: "Het thema %name% is bijgewerkt !"
         deleted: "Het thema is verwijderd !"
+
+admin:
+    title: "Admin Dashboard"
+    themes: "Thema's"
+    themesDescription: "Beheer de thema's van het platform"
+    manageThemes: "Thema's beheren"
+    subjects: "Onderwerpen"
+    subjectsDescription: "Beheer de onderwerpen van het platform"
+    manageSubjects: "Onderwerpen beheren"

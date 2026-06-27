@@ -133,6 +133,7 @@ resetPasswordEmail:
     cheers: "À bientôt !"
 
 flash:
+    accessDenied: "Vous n'avez pas accès à cette page !"
     mustLogin: "Vous devez être connecté !"
     alreadyConnected: "Vous êtes déjà connecté !"
     mustVerifyEmail: "Vous devez vérifier votre email pour jouer !"
@@ -146,3 +147,12 @@ flash:
         created: "Le thème %name% a bien été créé !"
         updated: "Le thème %name% a bien été modifié !"
         deleted: "Le thème a bien été supprimé !"
+
+admin:
+    title: "Dashboard Admin"
+    themes: "Thèmes"
+    themesDescription: "Gérer les thèmes de la plateforme"
+    manageThemes: "Gérer les thèmes"
+    subjects: "Sujets"
+    subjectsDescription: "Gérer les sujets de la plateforme"
+    manageSubjects: "Gérer les sujets"
