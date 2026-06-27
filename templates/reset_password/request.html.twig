@@ -1,22 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'resetPassword.title' | trans }}{% endblock %}
+{% block page_title %}{{ 'resetPassword.title' | trans }}{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>{{ 'resetPassword.title' | trans }}</h1>
+    <div class="card p-4" style="max-width: 500px;">
+        <h2 class="mb-4">{{ 'resetPassword.title' | trans }}</h2>
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email, { label: 'loginForm.email' | trans }) }}
-        <div>
-            <small>
-                {{ 'resetPassword.instruction' | trans }}
-            </small>
-        </div>
-
-        <button class="btn btn-primary">{{ 'resetPassword.send' | trans }}</button>
-    {{ form_end(requestForm) }}
+        {{ form_start(requestForm) }}
+            <div class="mb-3">{{ form_row(requestForm.email, { label: 'loginForm.email' | trans }) }}</div>
+            <small class="text-muted mb-3 d-block">{{ 'resetPassword.instruction' | trans }}</small>
+            <button class="btn btn-primary mt-3">{{ 'resetPassword.send' | trans }}</button>
+        {{ form_end(requestForm) }}
+    </div>
 {% endblock %}

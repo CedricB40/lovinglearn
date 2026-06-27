@@ -162,3 +162,5 @@ admin:
     subjectsDescription: "Gérer les sujets de la plateforme"
     manageSubjects: "Gérer les sujets"
 
+form:
+    save: "Enregistrer"

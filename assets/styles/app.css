@@ -302,3 +302,17 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: white !important;
     caret-color: white !important;
 }
+
+/* ===== FORMULAIRES - LAYOUT ===== */
+.form-group label,
+.mb-3 > label,
+.mb-3 > div > label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.mb-3 > div > input,
+.mb-3 > div > textarea,
+.mb-3 > div > select {
+    margin-top: 4px;
+}

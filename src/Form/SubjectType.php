@@ -6,7 +6,6 @@ use App\Entity\Subject;
 use App\Entity\Theme;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,10 +33,6 @@ class SubjectType extends AbstractType
                 'class' => Theme::class,
                 'choice_label' => 'name',
                 'label' => 'Thème',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Enregistrer',
-                'attr' => ['class' => 'btn btn-primary rounded-3 fw-bold'],
             ])
         ;
     }

@@ -162,3 +162,5 @@ admin:
     subjectsDescription: "Beheer de onderwerpen van het platform"
     manageSubjects: "Onderwerpen beheren"
 
+form:
+    save: "Opslaan"

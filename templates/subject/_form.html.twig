@@ -1,3 +1,8 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="mb-3">{{ form_row(form.name, { label: 'subject.index.name' | trans }) }}</div>
+    <div class="mb-3">{{ form_row(form.description, { label: 'subject.index.description' | trans }) }}</div>
+    <div class="mb-3">{{ form_row(form.content, { label: 'subject.show.learnMore' | trans }) }}</div>
+    <div class="mb-3">{{ form_row(form.image, { label: 'subject.index.image' | trans }) }}</div>
+    <div class="mb-3">{{ form_row(form.theme) }}</div>
+    <button type="submit" class="btn btn-primary mt-3">{{ 'form.save' | trans }}</button>
 {{ form_end(form) }}
