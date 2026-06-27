@@ -1,51 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'theme.index.title' | trans }}{% endblock %}
-{% block page_title %}⚙️ {{ 'theme.index.title' | trans }}{% endblock %}
+{% block title %}
+	{{ 'theme.index.title' | trans }}
+{% endblock %}
+{% block page_title %}⚙️
+	{{ 'theme.index.title' | trans }}
+{% endblock %}
 
 {% block body %}
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h5 class="fw-bold mb-0">{{ 'theme.index.list' | trans }}</h5>
-        <a href="{{ path('app_theme_new') }}" class="btn btn-primary rounded-3 fw-bold">➕ {{ 'theme.index.new' | trans }}</a>
-    </div>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h5 class="fw-bold mb-0">{{ 'theme.index.list' | trans }}</h5>
+		<a href="{{ path('app_theme_new') }}" class="btn btn-primary rounded-3 fw-bold">➕
+			{{ 'theme.index.new' | trans }}</a>
+		<a href="{{ path('app_subject_new') }}" class="btn btn-success rounded-3 fw-bold">➕
+			{{ 'subject.index.new' | trans }}</a>
+	</div>
 
-    <div class="card rounded-4 border-0 shadow-sm">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th>Id</th>
-                    <th>{{ 'theme.index.name' | trans }}</th>
-                    <th>Slug</th>
-                    <th>{{ 'theme.index.description' | trans }}</th>
-                    <th>{{ 'theme.index.image' | trans }}</th>
-                    <th>{{ 'theme.index.color' | trans }}</th>
-                    <th>{{ 'theme.index.actions' | trans }}</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for theme in themes %}
-                <tr>
-                    <td>{{ theme.id }}</td>
-                    <td>{{ theme.name }}</td>
-                    <td>{{ theme.slug }}</td>
-                    <td>{{ theme.description }}</td>
-                    <td>{{ theme.image }}</td>
-                    <td>
-                        <span class="badge rounded-pill" style="background: {{ theme.color }};">{{ theme.color }}</span>
-                    </td>
-                    <td>
-                        <a href="{{ path('app_theme_show', {'id': theme.id}) }}" class="btn btn-sm btn-outline-primary rounded-3">👁️ {{ 'theme.index.show' | trans }}</a>
-                        <a href="{{ path('app_theme_edit', {'id': theme.id}) }}" class="btn btn-sm btn-outline-warning rounded-3">✏️ {{ 'theme.index.edit' | trans }}</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7" class="text-center text-muted py-3">{{ 'theme.index.empty' | trans }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+	<div class="card rounded-4 border-0 shadow-sm">
+		<table class="table table-hover mb-0">
+			<thead class="table-light">
+				<tr>
+					<th>Id</th>
+					<th>{{ 'theme.index.name' | trans }}</th>
+					<th>Slug</th>
+					<th>{{ 'theme.index.description' | trans }}</th>
+					<th>{{ 'theme.index.image' | trans }}</th>
+					<th>{{ 'theme.index.color' | trans }}</th>
+					<th>{{ 'theme.index.actions' | trans }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for theme in themes %}
+					<tr>
+						<td>{{ theme.id }}</td>
+						<td>{{ theme.name }}</td>
+						<td>{{ theme.slug }}</td>
+						<td>{{ theme.description }}</td>
+						<td>{{ theme.image }}</td>
+						<td>
+							<span class="badge rounded-pill" style="background: {{ theme.color }};">{{ theme.color }}</span>
+						</td>
+						<td>
+							<a href="{{ path('app_theme_show', {'id': theme.id}) }}" class="btn btn-sm btn-outline-primary rounded-3">👁️
+								{{ 'theme.index.show' | trans }}</a>
+							<a href="{{ path('app_theme_edit', {'id': theme.id}) }}" class="btn btn-sm btn-outline-warning rounded-3">✏️
+								{{ 'theme.index.edit' | trans }}</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7" class="text-center text-muted py-3">{{ 'theme.index.empty' | trans }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
 {% endblock %}

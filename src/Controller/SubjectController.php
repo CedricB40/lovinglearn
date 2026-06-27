@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('/subject')]
+#[Route(path: '/subject')]
 final class SubjectController extends AbstractController
 {
     #[Route(path: '/', name: 'app_subject_index', methods: ['GET'])]

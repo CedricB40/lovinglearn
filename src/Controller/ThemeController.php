@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('/theme')]
+#[Route(path: '/theme')]
 final class ThemeController extends AbstractController
 {
     #[Route(path: '/', name: 'app_theme_index', methods: ['GET'])]

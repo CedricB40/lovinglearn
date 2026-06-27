@@ -12,6 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class HomeController extends AbstractController
 {
     #[Route(path: '/', name: 'app_home')]
+
     public function index(ThemeRepository $repository): Response
     {
         $themes = $repository->findAll();
@@ -21,7 +22,8 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/theme/{slug}', name: 'app_theme_show_public')]
+    #[Route(path: '/univers/{slug}', name: 'app_theme_show_public')]
+
     public function showTheme(string $slug, ThemeRepository $themeRepository, SubjectRepository $subjectRepository, TranslatorInterface $translator): Response
     {
         $theme = $themeRepository->findOneBy(['slug' => $slug]);

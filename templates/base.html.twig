@@ -29,7 +29,7 @@
 
 				{# Navigation #}
 				<nav class="p-2">
-					<small ... class="d-block px-2 mb-2 text-uppercase">{{ 'sidebar.univers' | trans }}</small>
+					<small class="d-block px-2 mb-2 text-uppercase">{{ 'sidebar.univers' | trans }}</small>
 					{% if themes is defined %}
 						{% for theme in themes %}
 							<a href="{{ path('app_theme_show_public', {'slug': theme.slug}) }}" class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold">
@@ -38,23 +38,6 @@
 								<span>▸</span>
 							</a>
 						{% endfor %}
-					{% else %}
-						<a href="{{ path('app_memory') }}" class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold" style="background: rgba(255,255,255,0.2);">
-							<span>🚀 Espace</span>
-							<span>▾</span>
-						</a>
-						<a href="#" class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold">
-							<span>🦕 Dinosaures</span>
-							<span>▸</span>
-						</a>
-						<a href="#" class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold">
-							<span>🦸 Super-héros</span>
-							<span>▸</span>
-						</a>
-						<a href="#" class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold">
-							<span>❤️ Corps humain</span>
-							<span>▸</span>
-						</a>
 					{% endif %}
 
 					<hr style="border-color: rgba(255,255,255,0.2);">
@@ -80,8 +63,6 @@
 						{% endblock %}
 					</h5>
 					<div class="d-flex gap-2 align-items-center">
-						<span class="badge rounded-pill" style="background:#FFB347; color:#7a4500;">4 univers</span>
-						<span class="badge rounded-pill" style="background:#c9c3ff; color:#3a3490;">12 sujets</span>
 
 						{% if app.user %}
 							<a href="{{ path('app_account') }}" class="btn btn-sm btn-outline-secondary">{{ 'navBar.account' | trans }}</a>
