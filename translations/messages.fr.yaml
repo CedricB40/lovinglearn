@@ -131,3 +131,18 @@ resetPasswordEmail:
     title: "Bonjour !"
     intro: "Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant :"
     cheers: "À bientôt !"
+
+flash:
+    mustLogin: "Vous devez être connecté !"
+    alreadyConnected: "Vous êtes déjà connecté !"
+    mustVerifyEmail: "Vous devez vérifier votre email pour jouer !"
+    themeNotFound: "Thème introuvable !"
+    emailVerified: "Votre adresse email a bien été vérifiée."
+    subject:
+        created: "Le sujet %name% a bien été créé !"
+        updated: "Le sujet %name% a bien été modifié !"
+        deleted: "Le sujet a bien été supprimé !"
+    theme:
+        created: "Le thème %name% a bien été créé !"
+        updated: "Le thème %name% a bien été modifié !"
+        deleted: "Le thème a bien été supprimé !"

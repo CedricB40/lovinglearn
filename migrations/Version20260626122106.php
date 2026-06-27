@@ -14,7 +14,7 @@ final class Version20260626122106 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Ajout clé étrangère reset_password_request -> users';
     }
 
     public function up(Schema $schema): void

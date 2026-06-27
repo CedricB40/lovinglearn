@@ -131,3 +131,18 @@ resetPasswordEmail:
     title: "Hallo!"
     intro: "Om uw wachtwoord te herstellen, klik op de volgende link:"
     cheers: "Tot ziens!"
+
+flash:
+    mustLogin: "U moet ingelogd zijn !"
+    alreadyConnected: "U bent al ingelogd !"
+    mustVerifyEmail: "U moet uw e-mail verifiëren om te spelen !"
+    themeNotFound: "Thema niet gevonden !"
+    emailVerified: "Uw e-mailadres is succesvol geverifieerd."
+    subject:
+        created: "Het onderwerp %name% is aangemaakt !"
+        updated: "Het onderwerp %name% is bijgewerkt !"
+        deleted: "Het onderwerp is verwijderd !"
+    theme:
+        created: "Het thema %name% is aangemaakt !"
+        updated: "Het thema %name% is bijgewerkt !"
+        deleted: "Het thema is verwijderd !"
