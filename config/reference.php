@@ -1520,6 +1520,49 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     throttle_limit?: int|Param, // Another password reset cannot be made faster than this throttle time in seconds. // Default: 3600
  *     enable_garbage_collection?: bool|Param, // Enable/Disable automatic garbage collection. // Default: true
  * }
+ * @psalm-type FosCkEditorConfig = array{
+ *     enable?: bool|Param, // Default: true
+ *     async?: bool|Param, // Default: false
+ *     auto_inline?: bool|Param, // Default: true
+ *     inline?: bool|Param, // Default: false
+ *     autoload?: bool|Param, // Default: true
+ *     jquery?: bool|Param, // Default: false
+ *     require_js?: bool|Param, // Default: false
+ *     input_sync?: bool|Param, // Default: false
+ *     base_path?: scalar|Param|null, // Default: "bundles/fosckeditor/"
+ *     js_path?: scalar|Param|null, // Default: "bundles/fosckeditor/ckeditor.js"
+ *     jquery_path?: scalar|Param|null, // Default: "bundles/fosckeditor/adapters/jquery.js"
+ *     default_config?: scalar|Param|null, // Default: null
+ *     configs?: array<string, array<string, mixed>>,
+ *     plugins?: array<string, array{ // Default: []
+ *         path?: scalar|Param|null,
+ *         filename?: scalar|Param|null,
+ *     }>,
+ *     styles?: array<string, list<array{ // Default: []
+ *         name?: scalar|Param|null,
+ *         type?: scalar|Param|null,
+ *         widget?: scalar|Param|null,
+ *         element?: mixed,
+ *         styles?: array<string, scalar|Param|null>,
+ *         attributes?: array<string, scalar|Param|null>,
+ *     }>>,
+ *     templates?: array<string, array{ // Default: []
+ *         imagesPath?: scalar|Param|null,
+ *         templates?: list<array{ // Default: []
+ *             title?: scalar|Param|null,
+ *             image?: scalar|Param|null,
+ *             description?: scalar|Param|null,
+ *             html?: scalar|Param|null,
+ *             template?: scalar|Param|null,
+ *             template_parameters?: array<string, scalar|Param|null>,
+ *         }>,
+ *     }>,
+ *     filebrowsers?: array<string, scalar|Param|null>,
+ *     toolbars?: array{
+ *         configs?: array<string, list<mixed>>,
+ *         items?: array<string, list<mixed>>,
+ *     },
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -1535,6 +1578,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     monolog?: MonologConfig,
  *     symfonycasts_verify_email?: SymfonycastsVerifyEmailConfig,
  *     symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
+ *     fos_ck_editor?: FosCkEditorConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -1553,6 +1597,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         maker?: MakerConfig,
  *         symfonycasts_verify_email?: SymfonycastsVerifyEmailConfig,
  *         symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
+ *         fos_ck_editor?: FosCkEditorConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -1569,6 +1614,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         symfonycasts_verify_email?: SymfonycastsVerifyEmailConfig,
  *         symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
+ *         fos_ck_editor?: FosCkEditorConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -1586,6 +1632,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         monolog?: MonologConfig,
  *         symfonycasts_verify_email?: SymfonycastsVerifyEmailConfig,
  *         symfonycasts_reset_password?: SymfonycastsResetPasswordConfig,
+ *         fos_ck_editor?: FosCkEditorConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,

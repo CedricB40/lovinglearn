@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\Subject;
 use App\Entity\Theme;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,10 +19,10 @@ class SubjectType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du sujet',
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', CKEditorType::class, [
                 'label' => 'Description courte',
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', CKEditorType::class, [
                 'label' => 'Contenu détaillé',
             ])
             ->add('image', TextType::class, [
