@@ -1,0 +1,39 @@
+{# SCRIPTS #}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('bundles/fosckeditor/ckeditor.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.9/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+    // Lenis - scroll fluide
+    var lenis = new Lenis();
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // GSAP - animation d'apparition au chargement
+    var domCards = document.querySelectorAll('.card');
+    if (domCards.length > 0) {
+        gsap.from('.card', {
+            duration: 0.6,
+            opacity: 0,
+            y: 30,
+            stagger: 0.1,
+            ease: 'power2.out'
+        });
+    }
+
+    // Fermeture offcanvas mobile avant navigation Turbo
+    document.addEventListener('turbo:before-visit', function() {
+        var offcanvasEl = document.getElementById('sidebarMobile');
+        if (offcanvasEl) {
+            var offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasEl);
+            if (offcanvasInstance) {
+                offcanvasInstance.hide();
+            }
+        }
+    });
+</script>

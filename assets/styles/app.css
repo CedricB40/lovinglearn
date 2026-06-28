@@ -51,12 +51,15 @@ aside {
 }
 
 /* ===== TOPBAR ===== */
+
 .topbar {
     height: 60px;
     background: rgba(255, 255, 255, 0.05) !important;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     color: white;
+    position: relative;
+    z-index: 10;
 }
 
 .topbar h5 {
@@ -318,3 +321,37 @@ input:-webkit-autofill:active {
     margin-top: 4px;
 }
 
+/* ===== OFFCANVAS MOBILE ===== */
+.offcanvas-sidebar {
+    background: rgba(79, 70, 229, 0.25) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    width: 260px !important;
+}
+
+.offcanvas-sidebar .offcanvas-header,
+.offcanvas-sidebar .offcanvas-body {
+    background: transparent !important;
+}
+
+/* ===== BURGER BUTTON ===== */
+.sidebar-toggler {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.sidebar-toggler:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.flex-grow-1 {
+    position: relative;
+    z-index: 1;
+}

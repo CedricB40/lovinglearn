@@ -1,0 +1,12 @@
+{# FLASH MESSAGES #}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success rounded-3">✅ {{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger rounded-3">❌ {{ message }}</div>
+{% endfor %}
+
+{% for message in app.flashes('warning') %}
+    <div class="alert alert-warning rounded-3">⚠️ {{ message }}</div>
+{% endfor %}

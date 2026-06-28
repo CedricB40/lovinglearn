@@ -1,0 +1,66 @@
+{# SIDEBAR - Offcanvas sur mobile, fixe sur desktop #}
+
+{# Version desktop (visible à partir de lg) #}
+<aside class="sidebar d-none d-lg-flex flex-column">
+    {# Logo #}
+    <div class="p-3 border-bottom border-white border-opacity-25">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">
+            <h5 class="text-white fw-bold mb-0">🎓 LovingLearn</h5>
+        </a>
+        <small class="sidebar-tagline">{{ 'sidebar.tagline' | trans }}</small>
+    </div>
+
+    {# Navigation #}
+    <nav class="p-2">
+        <small class="d-block px-2 mb-2 text-uppercase text-white-50">{{ 'sidebar.univers' | trans }}</small>
+        {% if themes is defined %}
+            {% for theme in themes %}
+                <a href="{{ path('app_theme_show_public', {'slug': theme.slug}) }}"
+                   class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold sidebar-link">
+                    <span>{{ theme.image }} {{ theme.name }}</span>
+                    <span>▸</span>
+                </a>
+            {% endfor %}
+        {% endif %}
+
+        <hr class="sidebar-hr">
+
+        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('app_admin') }}"
+               class="d-flex align-items-center text-decoration-none px-3 py-2 rounded-3 fw-bold sidebar-admin">
+                <span>⚙️ {{ 'sidebar.admin' | trans }}</span>
+            </a>
+        {% endif %}
+    </nav>
+</aside>
+
+{# Version mobile - Offcanvas Bootstrap 5 #}
+<div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="sidebarMobile">
+    <div class="offcanvas-header border-bottom border-white border-opacity-25">
+        <a href="{{ path('app_home') }}" class="text-white text-decoration-none">
+            <h5 class="text-white fw-bold mb-0">🎓 LovingLearn</h5>
+        </a>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-2">
+        <small class="d-block px-2 mb-2 text-uppercase text-white-50">{{ 'sidebar.univers' | trans }}</small>
+        {% if themes is defined %}
+            {% for theme in themes %}
+                <a href="{{ path('app_theme_show_public', {'slug': theme.slug}) }}"
+                   class="d-flex justify-content-between align-items-center text-white text-decoration-none px-3 py-2 rounded-3 mb-1 fw-bold sidebar-link offcanvas-link">
+                    <span>{{ theme.image }} {{ theme.name }}</span>
+                    <span>▸</span>
+                </a>
+            {% endfor %}
+        {% endif %}
+
+        <hr class="sidebar-hr">
+
+        {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('app_admin') }}"
+               class="d-flex align-items-center text-decoration-none px-3 py-2 rounded-3 fw-bold sidebar-admin offcanvas-link">
+                <span>⚙️ {{ 'sidebar.admin' | trans }}</span>
+            </a>
+        {% endif %}
+    </div>
+</div>
