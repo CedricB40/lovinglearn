@@ -1,7 +1,7 @@
 {{ form_start(form) }}
-    <div class="mb-3">{{ form_row(form.name, { label: 'theme.index.name' | trans }) }}</div>
-    <div class="mb-3">{{ form_row(form.description, { label: 'theme.index.description' | trans }) }}</div>
-    <div class="mb-3">{{ form_row(form.image, { label: 'theme.index.image' | trans }) }}</div>
+    <div class="mb-3">{{ form_row(form.name, { label: 'theme.index.name' | trans, attr: {'class': 'form-control w-100'} }) }}</div>
+    <div class="mb-3">{{ form_row(form.description, { label: 'theme.index.description' | trans, attr: {'rows': 4, 'class': 'form-control w-100'} }) }}</div>
+    <div class="mb-3">{{ form_row(form.image, { label: 'theme.index.image' | trans, attr: {'class': 'form-control w-100'} }) }}</div>
     <div class="mb-3">{{ form_row(form.color, { label: 'theme.index.color' | trans }) }}</div>
     <button type="submit" class="btn btn-primary mt-3">{{ 'form.save' | trans }}</button>
 {{ form_end(form) }}

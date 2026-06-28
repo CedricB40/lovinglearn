@@ -269,6 +269,7 @@ aside {
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: white !important;
+    width: 100% !important;
 }
 
 .form-control:focus, .form-select:focus {
@@ -316,3 +317,4 @@ input:-webkit-autofill:active {
 .mb-3 > div > select {
     margin-top: 4px;
 }
+

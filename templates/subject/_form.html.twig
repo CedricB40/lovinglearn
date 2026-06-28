@@ -1,8 +1,8 @@
 {{ form_start(form) }}
-    <div class="mb-3">{{ form_row(form.name, { label: 'subject.index.name' | trans }) }}</div>
-    <div class="mb-3">{{ form_row(form.description, { label: 'subject.index.description' | trans }) }}</div>
-    <div class="mb-3">{{ form_row(form.content, { label: 'subject.show.learnMore' | trans }) }}</div>
-    <div class="mb-3">{{ form_row(form.image, { label: 'subject.index.image' | trans }) }}</div>
-    <div class="mb-3">{{ form_row(form.theme) }}</div>
+    <div class="mb-3">{{ form_row(form.name, { label: 'subject.index.name' | trans, attr: {'class': 'form-control w-100'} }) }}</div>
+    <div class="mb-3">{{ form_row(form.description, { label: 'subject.index.description' | trans, attr: {'rows': 4, 'class': 'form-control w-100'} }) }}</div>
+    <div class="mb-3">{{ form_row(form.content, { label: 'subject.show.learnMore' | trans, attr: {'rows': 8, 'class': 'form-control w-100'} }) }}</div>
+    <div class="mb-3">{{ form_row(form.image, { label: 'subject.index.image' | trans, attr: {'class': 'form-control w-100'} }) }}</div>
+    <div class="mb-3">{{ form_row(form.theme, { attr: {'class': 'form-select w-100'} }) }}</div>
     <button type="submit" class="btn btn-primary mt-3">{{ 'form.save' | trans }}</button>
 {{ form_end(form) }}

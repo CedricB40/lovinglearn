@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'subject.new.title' | trans }}{% endblock %}
-{% block page_title %}➕ {{ 'subject.new.title' | trans }}{% endblock %}
+{% block title %}
+	{{ 'subject.new.title' | trans }}
+{% endblock %}
+{% block page_title %}➕
+	{{ 'subject.new.title' | trans }}
+{% endblock %}
 
 {% block body %}
 
-    <div class="card rounded-4 border-0 shadow-sm p-4" style="max-width: 600px;">
-        {{ include('subject/_form.html.twig') }}
-        <a href="{{ path('app_subject_index') }}" class="btn btn-secondary rounded-3 mt-2"> {{ 'subject.show.back' | trans }}</a>
-    </div>
+	<div class="card p-4">
+		{{ include('subject/_form.html.twig') }}
+		<a href="{{ path('app_subject_index') }}" class="btn btn-secondary rounded-3 mt-2">
+			{{ 'subject.show.back' | trans }}</a>
+	</div>
 
 {% endblock %}
