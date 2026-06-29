@@ -9,8 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-// use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
-// use Symfony\Component\Validator\Constraints\PasswordStrength;
+// use Symfony\Component\Validator\Constraints\NotCompromisedPassword;  // --> Désactivé : vérifie si le mot de passe a été compromis dans une fuite de données (trop contraignant en dev)
+// use Symfony\Component\Validator\Constraints\PasswordStrength;  // --> Désactivé : impose un mot de passe fort (majuscules, chiffres, caractères spéciaux) — réactiver en production
 
 class ChangePasswordFormType extends AbstractType
 {
