@@ -7,7 +7,8 @@
 
     {# Bannière de bienvenue #}
     <div class="p-4 mb-4 text-white rounded-4 banner-welcome">
-        <h2 class="fw-bold">{{ 'home.welcome' | trans }} 🎉</h2>
+        <h2 class="fw-bold">
+    {{ 'home.welcome' | trans }}{% if app.user %} {{ app.user.firstname }}{% endif %} ! 🎉</h2>
         <p class="mb-0">{{ 'home.subtitle' | trans }}</p>
     </div>
 

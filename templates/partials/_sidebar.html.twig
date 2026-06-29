@@ -11,7 +11,7 @@
     </div>
 
     {# Navigation #}
-    <nav class="p-2">
+    <nav class="p-2 d-flex flex-column flex-grow-1">
         <small class="d-block px-2 mb-2 text-uppercase text-white-50">{{ 'sidebar.univers' | trans }}</small>
         {% if themes is defined %}
             {% for theme in themes %}
@@ -31,6 +31,21 @@
                 <span>⚙️ {{ 'sidebar.admin' | trans }}</span>
             </a>
         {% endif %}
+
+        {# Boutons de langue - collés en bas #}
+        <div class="mt-auto px-3 pb-3 pt-2">
+            <hr class="sidebar-hr">
+            <div class="d-flex gap-2">
+                <a href="{{ path('app_language_switch', {'locale': 'fr'}) }}"
+                   class="btn btn-sm flex-grow-1 fw-bold {{ app.request.locale == 'fr' ? 'btn-primary' : 'btn-outline-secondary text-white' }}">
+                    🇫🇷 FR
+                </a>
+                <a href="{{ path('app_language_switch', {'locale': 'nl'}) }}"
+                   class="btn btn-sm flex-grow-1 fw-bold {{ app.request.locale == 'nl' ? 'btn-primary' : 'btn-outline-secondary text-white' }}">
+                    🇧🇪 NL
+                </a>
+            </div>
+        </div>
     </nav>
 </aside>
 
@@ -42,7 +57,7 @@
         </a>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
-    <div class="offcanvas-body p-2">
+    <div class="offcanvas-body p-2 d-flex flex-column">
         <small class="d-block px-2 mb-2 text-uppercase text-white-50">{{ 'sidebar.univers' | trans }}</small>
         {% if themes is defined %}
             {% for theme in themes %}
@@ -62,5 +77,20 @@
                 <span>⚙️ {{ 'sidebar.admin' | trans }}</span>
             </a>
         {% endif %}
+
+        {# Boutons de langue - collés en bas #}
+        <div class="mt-auto px-3 pb-3 pt-2">
+            <hr class="sidebar-hr">
+            <div class="d-flex gap-2">
+                <a href="{{ path('app_language_switch', {'locale': 'fr'}) }}"
+                   class="btn btn-sm flex-grow-1 fw-bold offcanvas-link {{ app.request.locale == 'fr' ? 'btn-primary' : 'btn-outline-secondary text-white' }}">
+                    🇫🇷 FR
+                </a>
+                <a href="{{ path('app_language_switch', {'locale': 'nl'}) }}"
+                   class="btn btn-sm flex-grow-1 fw-bold offcanvas-link {{ app.request.locale == 'nl' ? 'btn-primary' : 'btn-outline-secondary text-white' }}">
+                    🇧🇪 NL
+                </a>
+            </div>
+        </div>
     </div>
 </div>
