@@ -1,0 +1,27 @@
+Structure du dossier
+Le numéro de série du volume est 0000002A D8CE:16EF
+C:.
+    1-soleil.png
+    1-trex.png
+    10-parasaurolophus.png
+    10-pluton.png
+    2-mercure.png
+    2-triceratops.png
+    3-diplodocus.png
+    3-venus.png
+    4-stegosaure.png
+    4-terre.png
+    5-mars.png
+    5-velociraptor.png
+    6-ankylosaure.png
+    6-jupiter.png
+    7-saturne.png
+    7-spinosaure.png
+    8-pachycephalosaure.png
+    8-uranus.png
+    9-allosaure.png
+    9-neptune.png
+    contenu.txt
+    
+Aucun sous-dossier existant 
+

@@ -375,3 +375,134 @@ input:-webkit-autofill:active {
     position: relative;
     z-index: 1;
 }
+
+/* ===== LIGHT MODE ===== */
+body.light-mode {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+    color: #1E293B;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6 {
+    color: #1E293B;
+}
+
+body.light-mode aside {
+    background: rgba(79, 70, 229, 0.12) !important;
+    border-right: 1px solid rgba(79, 70, 229, 0.2) !important;
+}
+
+body.light-mode .sidebar-link,
+body.light-mode .sidebar-admin {
+    color: #3730A3 !important;
+}
+
+body.light-mode .sidebar-tagline {
+    color: rgba(55, 48, 163, 0.7);
+}
+
+body.light-mode .sidebar-hr {
+    border-color: rgba(79, 70, 229, 0.2);
+}
+
+body.light-mode .topbar {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-bottom: 1px solid rgba(79, 70, 229, 0.15) !important;
+    color: #1E293B;
+}
+
+body.light-mode .topbar h5 {
+    color: #1E293B;
+}
+
+body.light-mode .card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(79, 70, 229, 0.15) !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .text-muted {
+    color: #64748B !important;
+}
+
+body.light-mode .table {
+    --bs-table-color: #1E293B !important;
+    --bs-table-bg: transparent !important;
+    --bs-table-border-color: rgba(79, 70, 229, 0.1) !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .table-light {
+    --bs-table-color: #1E293B !important;
+    --bs-table-bg: rgba(79, 70, 229, 0.05) !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .form-control,
+body.light-mode .form-select {
+    background: white !important;
+    border: 1px solid rgba(79, 70, 229, 0.3) !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .form-control:focus,
+body.light-mode .form-select:focus {
+    background: white !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+body.light-mode label {
+    color: #1E293B !important;
+}
+
+body.light-mode .alert-info {
+    background: rgba(79, 70, 229, 0.1) !important;
+    border-color: rgba(79, 70, 229, 0.2) !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .offcanvas-sidebar {
+    background: rgba(240, 244, 255, 0.97) !important;
+}
+
+body.light-mode select option {
+    background: white;
+    color: #1E293B;
+}
+
+body.light-mode #stars-bg {
+    opacity: 0.3;
+}
+
+body.light-mode .text-white {
+    color: #1E293B !important;
+}
+
+body.light-mode .text-white-50 {
+    color: rgba(55, 48, 163, 0.6) !important;
+}
+
+/* Bannière thème — texte toujours blanc peu importe le mode */
+.banner-theme h2,
+.banner-theme p {
+    color: white !important;
+}
+
+/* Tableaux hover light mode */
+body.light-mode .table-hover tbody tr:hover {
+    --bs-table-hover-bg: rgba(79, 70, 229, 0.08) !important;
+    --bs-table-hover-color: #1E293B !important;
+    color: #1E293B !important;
+}
+
+body.light-mode .table-hover tbody tr:hover td {
+    color: #1E293B !important;
+}

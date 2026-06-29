@@ -13,7 +13,7 @@
     <div class="row g-4">
         {% for theme in themes %}
             <div class="col-md-3">
-                <a href="{{ path('app_memory_play', {'slug': theme.slug}) }}" class="text-decoration-none">
+                <a href="{{ path('app_memory_modes', {'slug': theme.slug}) }}" class="text-decoration-none">
                     <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100">
                         <div class="subject-emoji">{{ theme.image }}</div>
                         <h5 class="fw-bold mt-3">{{ theme.name }}</h5>

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ theme.name }} — Memory{% endblock %}
+{% block page_title %}🃏 {{ theme.name }} — {{ 'memory.chooseMode' | trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="p-4 mb-4 text-white rounded-4 banner-theme" style="background: {{ theme.color }};">
+        <h2 class="fw-bold">{{ theme.image }} {{ theme.name }}</h2>
+        <p class="mb-0">{{ 'memory.chooseModeSubtitle' | trans }}</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+        {# Mode Nom × Image #}
+        <div class="col-md-5">
+            {% if hasImages %}
+                <a href="{{ path('app_memory_play', {'slug': theme.slug, 'mode': 'nom-image'}) }}"
+                   class="text-decoration-none">
+                    <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100">
+                        <div class="subject-emoji">🪐</div>
+                        <h5 class="fw-bold mt-3">{{ 'memory.modeNomImage' | trans }}</h5>
+                        <p class="text-muted small">{{ 'memory.modeNomImageDesc' | trans }}</p>
+                        <span class="badge rounded-pill badge-theme mt-2">{{ 'memory.play' | trans }}</span>
+                    </div>
+                </a>
+            {% else %}
+                <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100 opacity-50">
+                    <div class="subject-emoji">🪐</div>
+                    <h5 class="fw-bold mt-3">{{ 'memory.modeNomImage' | trans }}</h5>
+                    <p class="text-muted small">{{ 'memory.modeNomImageDesc' | trans }}</p>
+                    <span class="badge rounded-pill bg-secondary mt-2">{{ 'memory.comingSoon' | trans }}</span>
+                </div>
+            {% endif %}
+        </div>
+
+        {# Mode Image × Image #}
+        <div class="col-md-5">
+            {% if hasImages %}
+                <a href="{{ path('app_memory_play', {'slug': theme.slug, 'mode': 'image-image'}) }}"
+                   class="text-decoration-none">
+                    <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100">
+                        <div class="subject-emoji">🖼️</div>
+                        <h5 class="fw-bold mt-3">{{ 'memory.modeImageImage' | trans }}</h5>
+                        <p class="text-muted small">{{ 'memory.modeImageImageDesc' | trans }}</p>
+                        <span class="badge rounded-pill badge-theme mt-2">{{ 'memory.play' | trans }}</span>
+                    </div>
+                </a>
+            {% else %}
+                <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100 opacity-50">
+                    <div class="subject-emoji">🖼️</div>
+                    <h5 class="fw-bold mt-3">{{ 'memory.modeImageImage' | trans }}</h5>
+                    <p class="text-muted small">{{ 'memory.modeImageImageDesc' | trans }}</p>
+                    <span class="badge rounded-pill bg-secondary mt-2">{{ 'memory.comingSoon' | trans }}</span>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ path('app_memory') }}" class="btn btn-outline-secondary rounded-3">
+            ← {{ 'memory.backToThemes' | trans }}
+        </a>
+    </div>
+
+{% endblock %}

@@ -71,6 +71,16 @@ memory:
         welcome: "Quel Memory veux-tu jouer ?"
         subtitle: "Choisis un thème pour commencer à jouer !"
         play: "Jouer"
+    chooseMode: "Choisir un mode"
+    chooseModeSubtitle: "Quel type de Memory veux-tu jouer ?"
+    modeNomImage: "Nom × Image"
+    modeNomImageDesc: "Retrouve la paire entre le nom et l'image"
+    modeImageImage: "Image × Image"
+    modeImageImageDesc: "Retrouve les deux images identiques"
+    comingSoon: "Bientôt disponible"
+    backToThemes: "Retour aux thèmes"
+    backToModes: "Retour aux modes"
+    play: "Jouer"
 
 subject:
     index:

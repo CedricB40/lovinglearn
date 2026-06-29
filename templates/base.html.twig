@@ -9,28 +9,18 @@
         {{ importmap('app') }}
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <body class="{{ app.session.get('_appearance', 'dark') == 'light' ? 'light-mode' : '' }}">
         <div id="stars-bg"></div>
 
         <div class="d-flex min-vh-100">
-
-            {# SIDEBAR #}
             {{ include('partials/_sidebar.html.twig') }}
-
-            {# MAIN #}
             <div class="flex-grow-1 d-flex flex-column">
-
-                {# TOPBAR #}
                 {{ include('partials/_topbar.html.twig') }}
-
-                {# CONTENU #}
                 <div class="p-4 flex-grow-1">
                     {{ include('partials/_flash_messages.html.twig') }}
                     {% block body %}{% endblock %}
                 </div>
-
             </div>
-
         </div>
 
         {{ include('partials/_scripts.html.twig') }}

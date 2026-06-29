@@ -71,6 +71,16 @@ memory:
         welcome: "Welk Memory wil je spelen ?"
         subtitle: "Kies een thema om te beginnen spelen !"
         play: "Spelen"
+    chooseMode: "Kies een modus"
+    chooseModeSubtitle: "Welk type Memory wil je spelen?"
+    modeNomImage: "Naam × Afbeelding"
+    modeNomImageDesc: "Vind het paar tussen de naam en de afbeelding"
+    modeImageImage: "Afbeelding × Afbeelding"
+    modeImageImageDesc: "Vind de twee identieke afbeeldingen"
+    comingSoon: "Binnenkort beschikbaar"
+    backToThemes: "Terug naar thema's"
+    backToModes: "Terug naar modi"
+    play: "Spelen"
 
 subject:
     index:

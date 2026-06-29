@@ -1,37 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ theme.name }}{% endblock %}
-{% block page_title %}{{ theme.image }} {{ theme.name }}{% endblock %}
+{% block title %}
+	{{ theme.name }}
+{% endblock %}
+{% block page_title %}
+	{{ theme.image }}
+	{{ theme.name }}
+{% endblock %}
 
 {% block body %}
 
-    <div class="mb-4 p-4 rounded-4 text-white" style="background: {{ theme.color }};">
-        <h2 class="fw-bold">{{ theme.image }} {{ theme.name }}</h2>
-        <p class="mb-0">{{ theme.description | striptags }}</p>
-    </div>
+	<div class="mb-4 p-4 rounded-4 text-white banner-theme" style="background: {{ theme.color }};">
+		<h2 class="fw-bold">{{ theme.image }}
+			{{ theme.name }}</h2>
+		<p class="mb-0">{{ theme.description | striptags }}</p>
+	</div>
 
-    {% if subjects is empty %}
-        <div class="alert alert-info rounded-3">
-            {{ 'theme.noSubject' | trans }}
-        </div>
-    {% else %}
-        <div class="row g-3">
-            {% for subject in subjects %}
-                <div class="col-md-3">
-                    <a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="text-decoration-none">
-                        <div class="card rounded-4 border-0 shadow-sm text-center p-3 h-100">
-                            {% if subject.image %}
-                                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image">
-                            {% else %}
-                                <div class="subject-emoji">🌍</div>
-                            {% endif %}
-                            <h6 class="fw-bold mt-2">{{ subject.name }}</h6>
-                            <small class="text-muted">{{ subject.description | striptags | slice(0, 60) }}...</small>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+	{% if subjects is empty %}
+		<div class="alert alert-info rounded-3">
+			{{ 'theme.noSubject' | trans }}
+		</div>
+	{% else %}
+		<div class="row g-3">
+			{% for subject in subjects %}
+				<div class="col-md-3">
+					<a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="text-decoration-none">
+						<div class="card rounded-4 border-0 shadow-sm text-center p-3 h-100">
+							{% if subject.image %}
+								<img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image">
+							{% else %}
+								<div class="subject-emoji">🌍</div>
+							{% endif %}
+							<h6 class="fw-bold mt-2">{{ subject.name }}</h6>
+							<small class="text-muted">{{ subject.description | striptags | slice(0, 60) }}...</small>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
 
 {% endblock %}
