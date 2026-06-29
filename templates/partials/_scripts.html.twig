@@ -6,13 +6,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <script>
-    // Lenis - scroll fluide
-    var lenis = new Lenis();
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
+    var lenis = new Lenis({
+    duration: 0.5,
+    easing: function(t) { return 1 - Math.pow(1 - t, 2); },
+    smoothWheel: true,
+    wheelMultiplier: 1.2,
+});
+function raf(time) {
+    lenis.raf(time);
     requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
 
     // GSAP - animation d'apparition au chargement
     var domCards = document.querySelectorAll('.card');

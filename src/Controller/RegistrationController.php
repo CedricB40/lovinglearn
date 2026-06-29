@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\ThemeRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -20,8 +21,8 @@ class RegistrationController extends AbstractController
 {
     public function __construct(private EmailVerifier $emailVerifier) {}
 
-#[Route(path: '/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
+    #[Route(path: '/register', name: 'app_register')]
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, TranslatorInterface $translator, ThemeRepository $themeRepository): Response
     {
         if ($this->getUser()) {
             $this->addFlash('error', $translator->trans('flash.alreadyConnected'));
@@ -56,10 +57,11 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
+            'themes'           => $themeRepository->findAll(),
         ]);
     }
 
-#[Route(path: '/verify/email', name: 'app_verify_email')]
+    #[Route(path: '/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

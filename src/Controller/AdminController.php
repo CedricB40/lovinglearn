@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -10,7 +11,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class AdminController extends AbstractController
 {
     #[Route(path: '/admin', name: 'app_admin')]
-    public function index(TranslatorInterface $translator): Response
+    public function index(TranslatorInterface $translator, ThemeRepository $themeRepository): Response
     {
         if (!$this->getUser()) {
             $this->addFlash('error', $translator->trans('flash.mustLogin'));
@@ -22,6 +23,8 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('admin/index.html.twig');
+        return $this->render('admin/index.html.twig', [
+            'themes' => $themeRepository->findAll(),
+        ]);
     }
 }

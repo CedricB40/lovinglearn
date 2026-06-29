@@ -1,54 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{ 'subject.index.title' | trans }}
-{% endblock %}
-{% block page_title %}📚
-	{{ 'subject.index.title' | trans }}
-{% endblock %}
+{% block title %}{{ 'subject.index.title' | trans }}{% endblock %}
+{% block page_title %}📚 {{ 'subject.index.title' | trans }}{% endblock %}
 
 {% block body %}
 
-	<div class="d-flex justify-content-between align-items-center mb-4">
-		<h5 class="fw-bold mb-0">{{ 'subject.index.list' | trans }}</h5>
-		<a href="{{ path('app_subject_new') }}" class="btn btn-primary rounded-3 fw-bold">➕
-			{{ 'subject.index.new' | trans }}</a>
-	</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold mb-0">{{ 'subject.index.list' | trans }}</h5>
+        <a href="{{ path('app_subject_new') }}" class="btn btn-primary rounded-3 fw-bold">
+            ➕ {{ 'subject.index.new' | trans }}
+        </a>
+    </div>
 
-	<div class="card rounded-4 border-0 shadow-sm">
-		<table class="table table-hover mb-0">
-			<thead class="table-light">
-				<tr>
-					<th>Id</th>
-					<th>{{ 'subject.index.name' | trans }}</th>
-					<th>Slug</th>
-					<th>{{ 'subject.index.description' | trans }}</th>
-					<th>{{ 'subject.index.image' | trans }}</th>
-					<th>{{ 'subject.index.actions' | trans }}</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for subject in subjects %}
-					<tr>
-						<td>{{ subject.id }}</td>
-						<td>{{ subject.name }}</td>
-						<td>{{ subject.slug }}</td>
-						<td>{{ subject.description|slice(0, 50) }}...</td>
-						<td>{{ subject.image }}</td>
-						<td>
-							<a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="btn btn-sm btn-outline-primary rounded-3">👁️
-								{{ 'subject.index.show' | trans }}</a>
-							<a href="{{ path('app_subject_edit', {'id': subject.id}) }}" class="btn btn-sm btn-outline-warning rounded-3">✏️
-								{{ 'subject.index.edit' | trans }}</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="6" class="text-center text-muted py-3">{{ 'subject.index.empty' | trans }}</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
+    {% for theme in themes %}
+
+        {# Titre du thème #}
+        <div class="d-flex align-items-center gap-2 mb-3 mt-4">
+            <span style="font-size: 1.5rem;">{{ theme.image }}</span>
+            <h5 class="fw-bold mb-0">{{ theme.name }}</h5>
+            <span class="badge rounded-pill ms-2" style="background: var(--primary);">
+                {{ theme.subjects|length }} sujet(s)
+            </span>
+        </div>
+
+        <div class="card rounded-4 border-0 shadow-sm mb-4">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>{{ 'subject.index.name' | trans }}</th>
+                        <th>Slug</th>
+                        <th>{{ 'subject.index.description' | trans }}</th>
+                        <th>{{ 'subject.index.image' | trans }}</th>
+                        <th>{{ 'subject.index.actions' | trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subject in theme.subjects %}
+                        <tr>
+                            <td>{{ subject.id }}</td>
+                            <td>{{ subject.name }}</td>
+                            <td>{{ subject.slug }}</td>
+                            <td>{{ subject.description | striptags | slice(0, 50) }}</td>
+                            <td>{{ subject.image }}</td>
+                            <td>
+                                <a href="{{ path('app_subject_show', {'id': subject.id}) }}"
+                                   class="btn btn-sm btn-outline-primary rounded-3">
+                                    👁️ {{ 'subject.index.show' | trans }}
+                                </a>
+                                <a href="{{ path('app_subject_edit', {'id': subject.id}) }}"
+                                   class="btn btn-sm btn-outline-warning rounded-3">
+                                    ✏️ {{ 'subject.index.edit' | trans }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-3">
+                                {{ 'subject.index.empty' | trans }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% endfor %}
 
 {% endblock %}

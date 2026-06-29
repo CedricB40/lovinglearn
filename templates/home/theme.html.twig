@@ -7,13 +7,13 @@
 
     <div class="mb-4 p-4 rounded-4 text-white" style="background: {{ theme.color }};">
         <h2 class="fw-bold">{{ theme.image }} {{ theme.name }}</h2>
-        <p class="mb-0">{{ theme.description }}</p>
+        <p class="mb-0">{{ theme.description | striptags }}</p>
     </div>
 
     {% if subjects is empty %}
-    <div class="alert alert-info rounded-3">
-        {{ 'theme.noSubject' | trans }}
-    </div>
+        <div class="alert alert-info rounded-3">
+            {{ 'theme.noSubject' | trans }}
+        </div>
     {% else %}
         <div class="row g-3">
             {% for subject in subjects %}
@@ -26,7 +26,7 @@
                                 <div class="subject-emoji">🌍</div>
                             {% endif %}
                             <h6 class="fw-bold mt-2">{{ subject.name }}</h6>
-                            <small class="text-muted">{{ subject.description }}</small>
+                            <small class="text-muted">{{ subject.description | striptags | slice(0, 60) }}...</small>
                         </div>
                     </a>
                 </div>

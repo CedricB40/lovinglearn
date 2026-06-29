@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,7 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils, TranslatorInterface $translator): Response
+    public function login(AuthenticationUtils $authenticationUtils, TranslatorInterface $translator, ThemeRepository $themeRepository): Response
     {
         if ($this->getUser()) {
             $this->addFlash('error', $translator->trans('flash.alreadyConnected'));
@@ -23,7 +24,8 @@ class SecurityController extends AbstractController
 
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
-            'error' => $error,
+            'error'         => $error,
+            'themes'        => $themeRepository->findAll(),
         ]);
     }
 

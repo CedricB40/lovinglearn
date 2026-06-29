@@ -35,7 +35,7 @@ class MemoryController extends AbstractController
     }
 
     #[Route(path: '/memory/{slug}', name: 'app_memory_play')]
-    public function index(string $slug, TranslatorInterface $translator): Response
+    public function index(string $slug, ThemeRepository $themeRepository, TranslatorInterface $translator): Response
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -51,20 +51,21 @@ class MemoryController extends AbstractController
         }
 
         $planets = [
-            ['name' => 'Soleil', 'image' => '1-soleil.png'],
-            ['name' => 'Mercure', 'image' => '2-mercure.png'],
-            ['name' => 'Vénus', 'image' => '3-venus.png'],
-            ['name' => 'Terre', 'image' => '4-terre.png'],
-            ['name' => 'Mars', 'image' => '5-mars.png'],
-            ['name' => 'Jupiter', 'image' => '6-jupiter.png'],
-            ['name' => 'Saturne', 'image' => '7-saturne.png'],
-            ['name' => 'Uranus', 'image' => '8-uranus.png'],
-            ['name' => 'Neptune', 'image' => '9-neptune.png'],
-            ['name' => 'Pluton', 'image' => '10-pluton.png'],
+            ['name' => 'Soleil',   'image' => '1-soleil.png'],
+            ['name' => 'Mercure',  'image' => '2-mercure.png'],
+            ['name' => 'Vénus',    'image' => '3-venus.png'],
+            ['name' => 'Terre',    'image' => '4-terre.png'],
+            ['name' => 'Mars',     'image' => '5-mars.png'],
+            ['name' => 'Jupiter',  'image' => '6-jupiter.png'],
+            ['name' => 'Saturne',  'image' => '7-saturne.png'],
+            ['name' => 'Uranus',   'image' => '8-uranus.png'],
+            ['name' => 'Neptune',  'image' => '9-neptune.png'],
+            ['name' => 'Pluton',   'image' => '10-pluton.png'],
         ];
 
         return $this->render('memory/index.html.twig', [
             'planets' => $planets,
+            'themes'  => $themeRepository->findAll(),
         ]);
     }
 }
