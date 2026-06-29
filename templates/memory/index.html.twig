@@ -1,127 +1,139 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'memory.title' | trans }}{% endblock %}
-{% block page_title %}🚀 {{ 'memory.pageTitle' | trans }}{% endblock %}
+{% block title %}
+	{{ 'memory.title' | trans }}
+{% endblock %}
+{% block page_title %}🚀
+	{{ 'memory.pageTitle' | trans }}
+{% endblock %}
 
 {% block body %}
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>{{ 'memory.findPairs' | trans }}</h2>
-    <div class="d-flex gap-3 align-items-center">
-        <span class="badge rounded-pill bg-primary fs-6">{{ 'memory.moves' | trans }} : <span id="counter">0</span></span>
-        <button class="btn btn-outline-secondary btn-sm" onclick="restartGame()">🔄 {{ 'memory.replay' | trans }}</button>
-    </div>
-</div>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h2>{{ 'memory.findPairs' | trans }}</h2>
+		<div class="d-flex gap-3 align-items-center">
+			<span class="badge rounded-pill bg-primary fs-6">{{ 'memory.moves' | trans }}
+				:
+				<span id="counter">0</span>
+			</span>
+			<button class="btn btn-outline-secondary btn-sm" onclick="restartGame()">🔄
+				{{ 'memory.replay' | trans }}</button>
+		</div>
+	</div>
 
-<div id="memory-grid" class="d-flex flex-wrap gap-3 justify-content-center" style="max-width: 720px; margin: 0 auto;">
-</div>
+	<div id="memory-grid" class="d-flex flex-wrap gap-3 justify-content-center" style="max-width: 720px; margin: 0 auto;"></div>
 
-<div id="victory-message" class="text-center mt-4 d-none">
-    <div class="alert alert-success fs-4">
-        🎉 {{ 'memory.victory' | trans }} <strong><span id="final-counter"></span></strong> {{ 'memory.moves' | trans }} !
-    </div>
-</div>
+	<div id="victory-message" class="text-center mt-4 d-none">
+		<div class="alert alert-success fs-4">
+			🎉
+			{{ 'memory.victory' | trans }}
+			<strong>
+				<span id="final-counter"></span>
+			</strong>
+			{{ 'memory.moves' | trans }}
+			!
+		</div>
+	</div>
 
 {% endblock %}
 
 {% block javascripts %}
 <script>
-    const planets = {{ planets | json_encode | raw }};
-
-    let cards = [];
-    let flippedCards = [];
-    let matchedPairs = 0;
-    let counter = 0;
-    let lockBoard = false;
-
-    function createCards() {
-        planets.forEach(planet => {
-            cards.push({ type: 'image', value: planet.name, image: planet.image });
-            cards.push({ type: 'name', value: planet.name, image: planet.image });
-        });
-        cards.sort(() => Math.random() - 0.5);
-    }
-
-    function renderCards() {
-        const grid = document.getElementById('memory-grid');
-        grid.innerHTML = '';
-
-        cards.forEach((card, index) => {
-            const cardEl = document.createElement('div');
-            cardEl.classList.add('memory-card');
-            cardEl.dataset.index = index;
-            cardEl.dataset.value = card.value;
-
-            cardEl.innerHTML = `
-                <div class="card-inner">
-                    <div class="card-front">❓</div>
-                    <div class="card-back">
-                        ${card.type === 'image'
-                            ? `<img src="/images/${card.image}" alt="${card.value}">`
-                            : `<span>${card.value}</span>`
-                        }
-                    </div>
-                </div>
-            `;
-
-            cardEl.addEventListener('click', () => flipCard(cardEl));
-            grid.appendChild(cardEl);
-        });
-    }
-
-    function flipCard(cardEl) {
-        if (lockBoard) return;
-        if (cardEl.classList.contains('flipped')) return;
-        if (cardEl.classList.contains('matched')) return;
-
-        cardEl.classList.add('flipped');
-        flippedCards.push(cardEl);
-
-        if (flippedCards.length === 2) {
-            lockBoard = true;
-            counter++;
-            document.getElementById('counter').textContent = counter;
-            checkMatch();
-        }
-    }
-
-    function checkMatch() {
-        const [card1, card2] = flippedCards;
-
-        if (card1.dataset.value === card2.dataset.value) {
-            card1.classList.add('matched');
-            card2.classList.add('matched');
-            matchedPairs++;
-            flippedCards = [];
-            lockBoard = false;
-
-            if (matchedPairs === planets.length) {
-                document.getElementById('final-counter').textContent = counter;
-                document.getElementById('victory-message').classList.remove('d-none');
-            }
-        } else {
-            setTimeout(() => {
-                card1.classList.remove('flipped');
-                card2.classList.remove('flipped');
-                flippedCards = [];
-                lockBoard = false;
-            }, 1000);
-        }
-    }
-
-    function restartGame() {
-        cards = [];
-        flippedCards = [];
-        matchedPairs = 0;
-        counter = 0;
-        lockBoard = false;
-        document.getElementById('counter').textContent = 0;
-        document.getElementById('victory-message').classList.add('d-none');
-        createCards();
-        renderCards();
-    }
-
-    createCards();
-    renderCards();
-</script>
-{% endblock %}
+	var planets = {{ planets | json_encode | raw }};
+	var cards = [];
+	var flippedCards = [];
+	var matchedPairs = 0;
+	var counter = 0;
+	var lockBoard = false;
+	
+	    function createCards() {
+	        planets.forEach(planet => {
+	            cards.push({ type: 'image', value: planet.name, image: planet.image });
+	            cards.push({ type: 'name', value: planet.name, image: planet.image });
+	        });
+	        cards.sort(() => Math.random() - 0.5);
+	    }
+	
+	    function renderCards() {
+	        const grid = document.getElementById('memory-grid');
+	        grid.innerHTML = '';
+	
+	        cards.forEach((card, index) => {
+	            const cardEl = document.createElement('div');
+	            cardEl.classList.add('memory-card');
+	            cardEl.dataset.index = index;
+	            cardEl.dataset.value = card.value;
+	
+	            cardEl.innerHTML = `
+	                <div class="card-inner">
+	                    <div class="card-front">❓</div>
+	                    <div class="card-back">
+	                        ${card.type === 'image'
+	                            ? `<img src="/images/${card.image}" alt="${card.value}">`
+	                            : `<span>${card.value}</span>`
+	                        }
+	                    </div>
+	                </div>
+	            `;
+	
+	            cardEl.addEventListener('click', () => flipCard(cardEl));
+	            grid.appendChild(cardEl);
+	        });
+	    }
+	
+	    function flipCard(cardEl) {
+	        if (lockBoard) return;
+	        if (cardEl.classList.contains('flipped')) return;
+	        if (cardEl.classList.contains('matched')) return;
+	
+	        cardEl.classList.add('flipped');
+	        flippedCards.push(cardEl);
+	
+	        if (flippedCards.length === 2) {
+	            lockBoard = true;
+	            counter++;
+	            document.getElementById('counter').textContent = counter;
+	            checkMatch();
+	        }
+	    }
+	
+	    function checkMatch() {
+	        const [card1, card2] = flippedCards;
+	
+	        if (card1.dataset.value === card2.dataset.value) {
+	            card1.classList.add('matched');
+	            card2.classList.add('matched');
+	            matchedPairs++;
+	            flippedCards = [];
+	            lockBoard = false;
+	
+	            if (matchedPairs === planets.length) {
+	                document.getElementById('final-counter').textContent = counter;
+	                document.getElementById('victory-message').classList.remove('d-none');
+	            }
+	        } else {
+	            setTimeout(() => {
+	                card1.classList.remove('flipped');
+	                card2.classList.remove('flipped');
+	                flippedCards = [];
+	                lockBoard = false;
+	            }, 1000);
+	        }
+	    }
+	
+	    function restartGame() {
+	        cards = [];
+	        flippedCards = [];
+	        matchedPairs = 0;
+	        counter = 0;
+	        lockBoard = false;
+	        document.getElementById('counter').textContent = 0;
+	        document.getElementById('victory-message').classList.add('d-none');
+	        createCards();
+	        renderCards();
+	    }
+	
+	    createCards();
+	    renderCards();
+	</script>
+	{% endblock %}
