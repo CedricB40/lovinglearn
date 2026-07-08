@@ -152,6 +152,7 @@ flash:
     mustLogin: "U moet ingelogd zijn !"
     alreadyConnected: "U bent al ingelogd !"
     mustVerifyEmail: "U moet uw e-mail verifiëren om te spelen !"
+    mustVerifyEmailSubject: "U moet uw e-mail verifiëren voordat u de onderwerpen kunt bekijken !"
     themeNotFound: "Thema niet gevonden !"
     emailVerified: "Uw e-mailadres is succesvol geverifieerd."
     subject:

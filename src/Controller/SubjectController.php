@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Subject;
+use App\Entity\User;
 use App\Form\SubjectType;
 use App\Repository\SubjectRepository;
 use App\Repository\ThemeRepository;
@@ -48,8 +49,21 @@ class SubjectController extends AbstractController
     }
 
     #[Route(path: '/subject/{id}', name: 'app_subject_show', methods: ['GET'])]
-    public function show(Subject $subject, ThemeRepository $themeRepository): Response
+    public function show(Subject $subject, ThemeRepository $themeRepository, TranslatorInterface $translator): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user) {
+            $this->addFlash('error', $translator->trans('flash.mustLogin'));
+            return $this->redirectToRoute('app_login');
+        }
+
+        if (!$user->isVerified()) {
+            $this->addFlash('error', $translator->trans('flash.mustVerifyEmailSubject'));
+            return $this->redirectToRoute('app_home');
+        }
+
         return $this->render('subject/show.html.twig', [
             'subject' => $subject,
             'themes'  => $themeRepository->findAll(),

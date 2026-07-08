@@ -152,6 +152,7 @@ flash:
     mustLogin: "Vous devez être connecté !"
     alreadyConnected: "Vous êtes déjà connecté !"
     mustVerifyEmail: "Vous devez vérifier votre email pour jouer !"
+    mustVerifyEmailSubject: "Vous devez vérifier votre email avant de pouvoir consulter les sujets !"
     themeNotFound: "Thème introuvable !"
     emailVerified: "Votre adresse email a bien été vérifiée."
     subject:
