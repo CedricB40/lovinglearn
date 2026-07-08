@@ -58,6 +58,8 @@ account:
     role: "Rol"
     admin: "Beheerder"
     user: "Gebruiker"
+    editTitle: "Mijn profiel bewerken"
+    backToProfile: "Terug naar profiel"
 
 memory:
     title: "Memory - Ruimte"
@@ -163,6 +165,7 @@ flash:
         created: "Het thema %name% is aangemaakt !"
         updated: "Het thema %name% is bijgewerkt !"
         deleted: "Het thema is verwijderd !"
+    accountUpdated: "Uw profiel is succesvol bijgewerkt !"
 
 admin:
     title: "Admin Dashboard"

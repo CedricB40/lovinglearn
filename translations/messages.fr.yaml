@@ -58,6 +58,8 @@ account:
     role: "Rôle"
     admin: "Admin"
     user: "Utilisateur"
+    editTitle: "Modifier mon profil"
+    backToProfile: "Retour au profil"
 
 memory:
     title: "Memory - Espace"
@@ -163,6 +165,7 @@ flash:
         created: "Le thème %name% a bien été créé !"
         updated: "Le thème %name% a bien été modifié !"
         deleted: "Le thème a bien été supprimé !"
+    accountUpdated: "Votre profil a été mis à jour avec succès !"
 
 admin:
     title: "Dashboard Admin"
