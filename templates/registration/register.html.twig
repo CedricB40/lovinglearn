@@ -1,31 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{ 'registerForm.titleRegister' | trans }}
-{% endblock %}
-{% block page_title %}
-	{{ 'registerForm.titleRegister' | trans }}
-{% endblock %}
+{% block title %}{{ 'registerForm.titleRegister' | trans }}{% endblock %}
+{% block page_title %}{{ 'registerForm.titleRegister' | trans }}{% endblock %}
 
 {% block body %}
 
-	{% for flash_error in app.flashes('verify_email_error') %}
-		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-	{% endfor %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
 
-	<div class="card p-4" style="max-width: 500px;">
-		<h2 class="mb-4">{{ 'registerForm.titleRegister' | trans }}</h2>
+    <div class="card p-4" style="max-width: 500px;">
+        <h2 class="mb-4">{{ 'registerForm.titleRegister' | trans }}</h2>
 
-		{{ form_errors(registrationForm) }}
+        {{ form_errors(registrationForm) }}
 
-		{{ form_start(registrationForm) }}
-		<div class="mb-3">{{ form_row(registrationForm.email, { label: 'registerForm.email' | trans }) }}</div>
-		<div class="mb-3">{{ form_row(registrationForm.firstname, { label: 'registerForm.firstname' | trans }) }}</div>
-		<div class="mb-3">{{ form_row(registrationForm.lastname, { label: 'registerForm.lastname' | trans }) }}</div>
-		<div class="mb-3">{{ form_row(registrationForm.plainPassword, { label: 'registerForm.password' | trans }) }}</div>
-		<div class="mb-3">{{ form_row(registrationForm.agreeTerms, { label: 'registerForm.agreeTerms' | trans }) }}</div>
-		<button type="submit" class="btn btn-primary mt-3">{{ 'registerForm.register' | trans }}</button>
-		{{ form_end(registrationForm) }}
-	</div>
+        {{ form_start(registrationForm) }}
+        <div class="mb-3">{{ form_row(registrationForm.email, { label: 'registerForm.email' | trans, attr: {'class': 'form-control'} }) }}</div>
+        <div class="mb-3">{{ form_row(registrationForm.firstname, { label: 'registerForm.firstname' | trans, attr: {'class': 'form-control'} }) }}</div>
+        <div class="mb-3">{{ form_row(registrationForm.lastname, { label: 'registerForm.lastname' | trans, attr: {'class': 'form-control'} }) }}</div>
+        <div class="mb-3">{{ form_row(registrationForm.plainPassword, { label: 'registerForm.password' | trans, attr: {'class': 'form-control'} }) }}</div>
+        <div class="mb-3">{{ form_row(registrationForm.agreeTerms, { label: 'registerForm.agreeTerms' | trans }) }}</div>
+        <button type="submit" class="btn btn-primary mt-3">{{ 'registerForm.register' | trans }}</button>
+        {{ form_end(registrationForm) }}
+    </div>
 
 {% endblock %}
