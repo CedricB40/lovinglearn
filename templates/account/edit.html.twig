@@ -8,9 +8,26 @@
     <div class="card p-4" style="max-width: 500px;">
         <h2 class="mb-4">{{ 'account.editTitle' | trans }}</h2>
 
-        {{ form_start(form) }}
+        {% if app.user.imageName %}
+            <div class="mb-3 text-center">
+                <img src="/images/profiles/{{ app.user.imageName }}"
+                     alt="{{ app.user.firstname }}"
+                     class="rounded-circle"
+                     style="width: 100px; height: 100px; object-fit: cover;">
+            </div>
+        {% else %}
+            <div class="mb-3 text-center">
+                <img src="/images/profiles/default.png"
+                     alt="Avatar par défaut"
+                     class="rounded-circle"
+                     style="width: 100px; height: 100px; object-fit: cover;">
+            </div>
+        {% endif %}
+
+        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
             <div class="mb-3">{{ form_row(form.firstname, { label: 'account.firstname' | trans, attr: {'class': 'form-control'} }) }}</div>
             <div class="mb-3">{{ form_row(form.lastname, { label: 'account.lastname' | trans, attr: {'class': 'form-control'} }) }}</div>
+            <div class="mb-3">{{ form_row(form.imageFile, { label: 'account.profileImage' | trans }) }}</div>
             <button type="submit" class="btn btn-primary mt-3">{{ 'form.save' | trans }}</button>
         {{ form_end(form) }}
 

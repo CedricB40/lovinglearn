@@ -60,6 +60,7 @@ account:
     user: "Utilisateur"
     editTitle: "Modifier mon profil"
     backToProfile: "Retour au profil"
+    profileImage: "Photo de profil"
 
 memory:
     title: "Memory - Espace"
