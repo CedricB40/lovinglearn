@@ -103,18 +103,15 @@
             {# Formulaire d'ajout de commentaire #}
             {% if app.user %}
                 <hr>
-                <form method="post" action="{{ path('app_comment_add', {'id': subject.id}) }}">
+                {{ form_start(commentForm, {'action': path('app_comment_add', {'id': subject.id})}) }}
                     <div class="mb-3">
-                        <textarea name="comment[content]"
-                                  class="form-control"
-                                  rows="3"
-                                  placeholder="{{ 'comment.placeholder' | trans }}"></textarea>
+                        {{ form_widget(commentForm.content, {'attr': {'class': 'form-control', 'rows': 3, 'placeholder': 'comment.placeholder' | trans}}) }}
+                        {{ form_errors(commentForm.content) }}
                     </div>
-                    <input type="hidden" name="_token" value="{{ csrf_token('add_comment' ~ subject.id) }}">
                     <button type="submit" class="btn btn-primary rounded-3">
                         💬 {{ 'comment.add' | trans }}
                     </button>
-                </form>
+                {{ form_end(commentForm) }}
             {% else %}
                 <p class="text-muted mt-3">
                     <a href="{{ path('app_login') }}">{{ 'navBar.login' | trans }}</a>

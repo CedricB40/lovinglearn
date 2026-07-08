@@ -35,10 +35,6 @@ class SubjectRepository extends ServiceEntityRepository
                 ->setParameter('theme', $searchData->theme);
         }
 
-        $data = $data
-            ->getQuery()
-            ->getResult();
-
-        return $this->paginator->paginate($data, $searchData->page, 3);
+        return $this->paginator->paginate($data, $searchData->page);
     }
 }

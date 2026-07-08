@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\User;
+use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\SubjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,24 +33,27 @@ class CommentController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        $content = $request->request->all('comment')['content'] ?? '';
+        $comment = new Comment();
+        $comment->setUser($user);
+        $comment->setSubject($subject);
 
-        if (!empty(trim($content))) {
-            $comment = new Comment();
-            $comment->setUser($user);
-            $comment->setSubject($subject);
-            $comment->setContent($content);
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setCreatedAt(new \DateTimeImmutable());
             $em->persist($comment);
             $em->flush();
             $this->addFlash('success', $translator->trans('flash.commentAdded'));
+        } else {
+            $this->addFlash('error', $translator->trans('comment.notBlank'));
         }
 
         return $this->redirectToRoute('app_subject_show', ['id' => $id]);
     }
 
     #[Route(path: '/comment/{id}/delete', name: 'app_comment_delete', methods: ['POST'])]
-    public function delete(int $id, CommentRepository $commentRepository, EntityManagerInterface $em, TranslatorInterface $translator): Response
+    public function delete(int $id, Request $request, CommentRepository $commentRepository, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
         $comment = $commentRepository->find($id);
 
@@ -61,6 +65,11 @@ class CommentController extends AbstractController
         $user = $this->getUser();
 
         if ($comment->getUser() !== $user && !$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('error', $translator->trans('flash.accessDenied'));
+            return $this->redirectToRoute('app_subject_show', ['id' => $comment->getSubject()->getId()]);
+        }
+
+        if (!$this->isCsrfTokenValid('delete_comment' . $comment->getId(), $request->request->getString('_token'))) {
             $this->addFlash('error', $translator->trans('flash.accessDenied'));
             return $this->redirectToRoute('app_subject_show', ['id' => $comment->getSubject()->getId()]);
         }

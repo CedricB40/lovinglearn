@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Subject;
 use App\Entity\User;
+use App\Form\CommentType;
 use App\Form\SubjectType;
 use App\Repository\SubjectRepository;
 use App\Repository\ThemeRepository;
@@ -12,11 +14,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SubjectController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(path: '/subject/', name: 'app_subject_index')]
     public function index(ThemeRepository $themeRepository): Response
     {
@@ -25,6 +29,7 @@ class SubjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(path: '/subject/new', name: 'app_subject_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, TranslatorInterface $translator, ThemeRepository $themeRepository): Response
     {
@@ -64,12 +69,16 @@ class SubjectController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        $commentForm = $this->createForm(CommentType::class, new Comment());
+
         return $this->render('subject/show.html.twig', [
-            'subject' => $subject,
-            'themes'  => $themeRepository->findAll(),
+            'subject'     => $subject,
+            'themes'      => $themeRepository->findAll(),
+            'commentForm' => $commentForm,
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(path: '/subject/{id}/edit', name: 'app_subject_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Subject $subject, EntityManagerInterface $entityManager, SluggerInterface $slugger, TranslatorInterface $translator, ThemeRepository $themeRepository): Response
     {
@@ -91,6 +100,7 @@ class SubjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route(path: '/subject/{id}', name: 'app_subject_delete', methods: ['POST'])]
     public function delete(Request $request, Subject $subject, EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {

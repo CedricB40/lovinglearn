@@ -1,3 +1,6 @@
+/* ============================================================
+   VARIABLES
+   ============================================================ */
 :root {
     --primary: #4f46e5;
     --primary-dark: #3730a3;
@@ -7,13 +10,14 @@
     --purple: #764ba2;
     --bg: #0f0f1a;
     --bg-2: #1a1040;
-    --sidebar-bg: #4f46e5;
     --text: #1e293b;
     --text-muted: #64748b;
     --radius: 16px;
 }
 
-/* ===== BASE ===== */
+/* ============================================================
+   BASE
+   ============================================================ */
 body {
     font-family: "Nunito", sans-serif;
     background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
@@ -31,7 +35,46 @@ h6 {
     font-weight: 600;
 }
 
-/* ===== SIDEBAR ===== */
+/* ===== TEXTE ===== */
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ============================================================
+   FOND ANIMÉ — ÉTOILES
+   ============================================================ */
+#stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+    opacity: 0.7;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* ============================================================
+   MISE EN PAGE — SIDEBAR / TOPBAR / OFFCANVAS
+   ============================================================ */
 aside {
     background: rgba(79, 70, 229, 0.15) !important;
     backdrop-filter: blur(20px);
@@ -55,8 +98,6 @@ aside {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* ===== TOPBAR ===== */
-
 .topbar {
     height: 60px;
     background: rgba(255, 255, 255, 0.05) !important;
@@ -71,7 +112,42 @@ aside {
     color: white;
 }
 
-/* ===== BOUTONS ===== */
+.offcanvas-sidebar {
+    background: rgba(79, 70, 229, 0.25) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    width: 260px !important;
+}
+
+.offcanvas-sidebar .offcanvas-header,
+.offcanvas-sidebar .offcanvas-body {
+    background: transparent !important;
+}
+
+.sidebar-toggler {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.sidebar-toggler:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.flex-grow-1 {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   BOUTONS
+   ============================================================ */
 .btn-primary {
     background-color: var(--primary);
     border-color: var(--primary-dark);
@@ -110,7 +186,9 @@ aside {
     font-size: 16px;
 }
 
-/* ===== CARTES ===== */
+/* ============================================================
+   CARTES
+   ============================================================ */
 .card {
     border-radius: var(--radius) !important;
     background: rgba(255, 255, 255, 0.05) !important;
@@ -118,7 +196,9 @@ aside {
     color: white !important;
 }
 
-/* ===== TABLEAUX ===== */
+/* ============================================================
+   TABLEAUX
+   ============================================================ */
 .table {
     --bs-table-color: white !important;
     --bs-table-bg: transparent !important;
@@ -140,17 +220,102 @@ aside {
     color: white !important;
 }
 
-/* ===== TEXTE ===== */
-.text-muted {
-    color: rgba(255, 255, 255, 0.6) !important;
+/* ============================================================
+   FORMULAIRES
+   ============================================================ */
+.form-control,
+.form-select {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    width: 100% !important;
 }
 
-/* ===== BANNIÈRE HOME ===== */
+.form-control:focus,
+.form-select:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+    box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25) !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+label {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+select option {
+    background: #1a1040;
+    color: white;
+}
+
+/* Layout des champs (espacement label / input) */
+.form-group label,
+.mb-3 > label,
+.mb-3 > div > label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.mb-3 > div > input,
+.mb-3 > div > textarea,
+.mb-3 > div > select {
+    margin-top: 4px;
+}
+
+/* Autofill navigateur (Chrome/Edge) en dark mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(15, 15, 26, 0.9) inset !important;
+    -webkit-text-fill-color: white !important;
+    caret-color: white !important;
+}
+
+/* Barre de recherche (input + bouton groupés) */
+.input-group input[type="search"] {
+    border-radius: 8px 0 0 8px !important;
+    flex: 1;
+}
+
+.input-group .btn {
+    border-radius: 0 8px 8px 0 !important;
+}
+
+/* ============================================================
+   ALERTES
+   ============================================================ */
+.alert-info {
+    background: rgba(79, 70, 229, 0.2) !important;
+    border-color: rgba(79, 70, 229, 0.3) !important;
+    color: white !important;
+}
+
+/* ============================================================
+   BADGES / BANNIÈRES
+   ============================================================ */
+.badge-theme {
+    background: var(--primary);
+    color: white;
+}
+
 .banner-welcome {
     background: linear-gradient(135deg, var(--primary), var(--purple));
 }
 
-/* ===== SUJETS ===== */
+/* Bannière thème — texte toujours blanc peu importe le mode */
+.banner-theme h2,
+.banner-theme p {
+    color: white !important;
+}
+
+/* ============================================================
+   SUJETS
+   ============================================================ */
 .subject-image {
     width: 100px;
     height: 100px;
@@ -175,16 +340,13 @@ aside {
     font-size: 5rem;
 }
 
-.badge-theme {
-    background: var(--primary);
-    color: white;
-}
-
 .subject-content {
     line-height: 1.8;
 }
 
-/* ===== MEMORY GAME ===== */
+/* ============================================================
+   MEMORY GAME
+   ============================================================ */
 .memory-card {
     width: 130px;
     height: 130px;
@@ -249,137 +411,14 @@ aside {
     border-color: var(--success);
 }
 
-/* ===== ÉTOILES ===== */
-#stars-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
+/* ============================================================
+   MODE CLAIR (LIGHT MODE)
+   ============================================================ */
 
-.star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle 3s infinite alternate;
-    opacity: 0.7;
-}
-
-@keyframes twinkle {
-    from {
-        opacity: 0.2;
-        transform: scale(1);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1.3);
-    }
-}
-
-/* ===== FORMULAIRES DARK MODE ===== */
-.form-control,
-.form-select {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: white !important;
-    width: 100% !important;
-}
-
-.form-control:focus,
-.form-select:focus {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: var(--primary) !important;
-    color: white !important;
-    box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25) !important;
-}
-
-.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.4) !important;
-}
-
-label {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* ===== SELECT OPTIONS ===== */
-select option {
-    background: #1a1040;
-    color: white;
-}
-
-/* ===== ALERTS DARK MODE ===== */
-.alert-info {
-    background: rgba(79, 70, 229, 0.2) !important;
-    border-color: rgba(79, 70, 229, 0.3) !important;
-    color: white !important;
-}
-
-/* ===== AUTOFILL DARK MODE ===== */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px rgba(15, 15, 26, 0.9) inset !important;
-    -webkit-text-fill-color: white !important;
-    caret-color: white !important;
-}
-
-/* ===== FORMULAIRES - LAYOUT ===== */
-.form-group label,
-.mb-3 > label,
-.mb-3 > div > label {
-    display: block;
-    margin-bottom: 6px;
-}
-
-.mb-3 > div > input,
-.mb-3 > div > textarea,
-.mb-3 > div > select {
-    margin-top: 4px;
-}
-
-/* ===== OFFCANVAS MOBILE ===== */
-.offcanvas-sidebar {
-    background: rgba(79, 70, 229, 0.25) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-    width: 260px !important;
-}
-
-.offcanvas-sidebar .offcanvas-header,
-.offcanvas-sidebar .offcanvas-body {
-    background: transparent !important;
-}
-
-/* ===== BURGER BUTTON ===== */
-.sidebar-toggler {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 1.2rem;
-    line-height: 1;
-    padding: 4px 10px;
-    border-radius: 8px;
-}
-
-.sidebar-toggler:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.flex-grow-1 {
-    position: relative;
-    z-index: 1;
-}
-
-/* ===== LIGHT MODE ===== */
+/* --- Base --- */
 body.light-mode {
     background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
-    color: #1E293B;
+    color: var(--text);
 }
 
 body.light-mode h1,
@@ -388,9 +427,27 @@ body.light-mode h3,
 body.light-mode h4,
 body.light-mode h5,
 body.light-mode h6 {
-    color: #1E293B;
+    color: var(--text);
 }
 
+body.light-mode .text-muted {
+    color: var(--text-muted) !important;
+}
+
+body.light-mode .text-white {
+    color: var(--text) !important;
+}
+
+body.light-mode .text-white-50 {
+    color: rgba(55, 48, 163, 0.6) !important;
+}
+
+/* --- Fond animé --- */
+body.light-mode #stars-bg {
+    opacity: 0.3;
+}
+
+/* --- Mise en page --- */
 body.light-mode aside {
     background: rgba(79, 70, 229, 0.12) !important;
     border-right: 1px solid rgba(79, 70, 229, 0.2) !important;
@@ -412,47 +469,60 @@ body.light-mode .sidebar-hr {
 body.light-mode .topbar {
     background: rgba(255, 255, 255, 0.8) !important;
     border-bottom: 1px solid rgba(79, 70, 229, 0.15) !important;
-    color: #1E293B;
+    color: var(--text);
 }
 
 body.light-mode .topbar h5 {
-    color: #1E293B;
+    color: var(--text);
 }
 
+body.light-mode .offcanvas-sidebar {
+    background: rgba(240, 244, 255, 0.97) !important;
+}
+
+/* --- Cartes --- */
 body.light-mode .card {
     background: rgba(255, 255, 255, 0.9) !important;
     border: 1px solid rgba(79, 70, 229, 0.15) !important;
-    color: #1E293B !important;
+    color: var(--text) !important;
 }
 
-body.light-mode .text-muted {
-    color: #64748B !important;
-}
-
+/* --- Tableaux --- */
 body.light-mode .table {
-    --bs-table-color: #1E293B !important;
+    --bs-table-color: var(--text) !important;
     --bs-table-bg: transparent !important;
     --bs-table-border-color: rgba(79, 70, 229, 0.1) !important;
-    color: #1E293B !important;
+    color: var(--text) !important;
 }
 
 body.light-mode .table-light {
-    --bs-table-color: #1E293B !important;
+    --bs-table-color: var(--text) !important;
     --bs-table-bg: rgba(79, 70, 229, 0.05) !important;
-    color: #1E293B !important;
+    color: var(--text) !important;
 }
 
+body.light-mode .table-hover tbody tr:hover {
+    --bs-table-hover-bg: rgba(79, 70, 229, 0.08) !important;
+    --bs-table-hover-color: var(--text) !important;
+    color: var(--text) !important;
+}
+
+body.light-mode .table-hover tbody tr:hover td {
+    color: var(--text) !important;
+}
+
+/* --- Formulaires --- */
 body.light-mode .form-control,
 body.light-mode .form-select {
     background: white !important;
     border: 1px solid rgba(79, 70, 229, 0.3) !important;
-    color: #1E293B !important;
+    color: var(--text) !important;
 }
 
 body.light-mode .form-control:focus,
 body.light-mode .form-select:focus {
     background: white !important;
-    color: #1E293B !important;
+    color: var(--text) !important;
 }
 
 body.light-mode .form-control::placeholder {
@@ -460,59 +530,17 @@ body.light-mode .form-control::placeholder {
 }
 
 body.light-mode label {
-    color: #1E293B !important;
-}
-
-body.light-mode .alert-info {
-    background: rgba(79, 70, 229, 0.1) !important;
-    border-color: rgba(79, 70, 229, 0.2) !important;
-    color: #1E293B !important;
-}
-
-body.light-mode .offcanvas-sidebar {
-    background: rgba(240, 244, 255, 0.97) !important;
+    color: var(--text) !important;
 }
 
 body.light-mode select option {
     background: white;
-    color: #1E293B;
+    color: var(--text);
 }
 
-body.light-mode #stars-bg {
-    opacity: 0.3;
-}
-
-body.light-mode .text-white {
-    color: #1E293B !important;
-}
-
-body.light-mode .text-white-50 {
-    color: rgba(55, 48, 163, 0.6) !important;
-}
-
-/* Bannière thème — texte toujours blanc peu importe le mode */
-.banner-theme h2,
-.banner-theme p {
-    color: white !important;
-}
-
-/* Tableaux hover light mode */
-body.light-mode .table-hover tbody tr:hover {
-    --bs-table-hover-bg: rgba(79, 70, 229, 0.08) !important;
-    --bs-table-hover-color: #1E293B !important;
-    color: #1E293B !important;
-}
-
-body.light-mode .table-hover tbody tr:hover td {
-    color: #1E293B !important;
-}
-
-/* ===== SEARCH INPUT GROUP ===== */
-.input-group input[type="search"] {
-    border-radius: 8px 0 0 8px !important;
-    flex: 1;
-}
-
-.input-group .btn {
-    border-radius: 0 8px 8px 0 !important;
+/* --- Alertes --- */
+body.light-mode .alert-info {
+    background: rgba(79, 70, 229, 0.1) !important;
+    border-color: rgba(79, 70, 229, 0.2) !important;
+    color: var(--text) !important;
 }

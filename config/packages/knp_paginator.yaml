@@ -10,7 +10,7 @@ knp_paginator:
         filter_field_name: filterField  # filter field query parameter name
         filter_value_name: filterValue  # filter value query parameter name
         page_out_of_range: ignore       # ignore, fix, or throwException when the page is out of range
-        default_limit: 10               # default number of items per page
+        default_limit: 5               # default number of items per page
     template:
         pagination: '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig'
         rel_links: '@KnpPaginator/Pagination/rel_links.html.twig'    # <link rel=...> tags template
