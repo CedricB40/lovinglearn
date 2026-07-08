@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\ThemeRepository;
+use App\Form\SearchDataType;
+use App\Model\SearchData;
 use App\Repository\SubjectRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class HomeController extends AbstractController
     }
 
     #[Route(path: '/univers/{slug}', name: 'app_theme_show_public')]
-    public function showTheme(string $slug, ThemeRepository $themeRepository, SubjectRepository $subjectRepository, TranslatorInterface $translator, PaginatorInterface $paginator, Request $request): Response
+    public function showTheme(string $slug, ThemeRepository $themeRepository, SubjectRepository $subjectRepository, TranslatorInterface $translator, Request $request): Response
     {
         $theme = $themeRepository->findOneBy(['slug' => $slug]);
 
@@ -33,17 +34,20 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        $subjectsQuery = $subjectRepository->findBy(['theme' => $theme]);
+        $searchData = new SearchData();
+        $searchData->page = $request->query->getInt('page', 1);
+        $searchData->q    = $request->query->get('q', '');
+        $searchData->theme = $theme;
 
-        $pagination = $paginator->paginate(
-            $subjectsQuery,
-            $request->query->getInt('page', 1),
-            5
-        );
+        $form = $this->createForm(SearchDataType::class, $searchData);
+        $form->handleRequest($request);
+
+        $pagination = $subjectRepository->findBySearch($searchData);
 
         return $this->render('home/theme.html.twig', [
             'theme'      => $theme,
             'pagination' => $pagination,
+            'form'       => $form,
             'themes'     => $themeRepository->findAll(),
         ]);
     }

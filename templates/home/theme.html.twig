@@ -10,6 +10,14 @@
         <p class="mb-0">{{ theme.description | striptags }}</p>
     </div>
 
+    {# Barre de recherche #}
+    {{ form_start(form, {'method': 'GET', 'attr': {'class': 'mb-4'}}) }}
+        <div class="input-group">
+            {{ form_widget(form.q) }}
+            <button type="submit" class="btn btn-primary">🔍 {{ 'search.button' | trans }}</button>
+        </div>
+    {{ form_end(form) }}
+
     {% if pagination.totalItemCount == 0 %}
         <div class="alert alert-info rounded-3">
             {{ 'theme.noSubject' | trans }}
