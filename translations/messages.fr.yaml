@@ -109,6 +109,8 @@ subject:
     delete:
         confirm: "Êtes-vous sûr de vouloir supprimer ce sujet ?"
         button: "Supprimer"
+    like: "J'aime"
+    unlike: "Je n'aime plus"
 
 registerForm:
     titleRegister: "Inscription"
@@ -167,6 +169,8 @@ flash:
         updated: "Le thème %name% a bien été modifié !"
         deleted: "Le thème a bien été supprimé !"
     accountUpdated: "Votre profil a été mis à jour avec succès !"
+    liked: "Vous avez aimé ce sujet !"
+    unliked: "Vous n'aimez plus ce sujet."
 
 admin:
     title: "Dashboard Admin"
