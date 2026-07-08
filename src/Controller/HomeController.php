@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Form\SearchDataType;
 use App\Model\SearchData;
 use App\Repository\SubjectRepository;
 use App\Repository\ThemeRepository;
@@ -35,19 +34,15 @@ class HomeController extends AbstractController
         }
 
         $searchData = new SearchData();
-        $searchData->page = $request->query->getInt('page', 1);
-        $searchData->q    = $request->query->get('q', '');
+        $searchData->page  = $request->query->getInt('page', 1);
+        $searchData->q     = $request->query->all('search_data')['q'] ?? '';
         $searchData->theme = $theme;
-
-        $form = $this->createForm(SearchDataType::class, $searchData);
-        $form->handleRequest($request);
 
         $pagination = $subjectRepository->findBySearch($searchData);
 
         return $this->render('home/theme.html.twig', [
             'theme'      => $theme,
             'pagination' => $pagination,
-            'form'       => $form,
             'themes'     => $themeRepository->findAll(),
         ]);
     }

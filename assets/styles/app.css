@@ -506,3 +506,13 @@ body.light-mode .table-hover tbody tr:hover {
 body.light-mode .table-hover tbody tr:hover td {
     color: #1E293B !important;
 }
+
+/* ===== SEARCH INPUT GROUP ===== */
+.input-group input[type="search"] {
+    border-radius: 8px 0 0 8px !important;
+    flex: 1;
+}
+
+.input-group .btn {
+    border-radius: 0 8px 8px 0 !important;
+}

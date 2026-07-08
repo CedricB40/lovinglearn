@@ -1,50 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ theme.name }}{% endblock %}
-{% block page_title %}{{ theme.image }} {{ theme.name }}{% endblock %}
+{% block title %}
+	{{ theme.name }}
+{% endblock %}
+{% block page_title %}
+	{{ theme.image }}
+	{{ theme.name }}
+{% endblock %}
 
 {% block body %}
 
-    <div class="mb-4 p-4 rounded-4 text-white banner-theme" style="background: {{ theme.color }};">
-        <h2 class="fw-bold">{{ theme.image }} {{ theme.name }}</h2>
-        <p class="mb-0">{{ theme.description | striptags }}</p>
-    </div>
+	<div class="mb-4 p-4 rounded-4 text-white banner-theme" style="background: {{ theme.color }};">
+		<h2 class="fw-bold">{{ theme.image }}
+			{{ theme.name }}</h2>
+		<p class="mb-0">{{ theme.description | striptags }}</p>
+	</div>
 
-    {# Barre de recherche #}
-    {{ form_start(form, {'method': 'GET', 'attr': {'class': 'mb-4'}}) }}
-        <div class="input-group">
-            {{ form_widget(form.q) }}
-            <button type="submit" class="btn btn-primary">🔍 {{ 'search.button' | trans }}</button>
-        </div>
-    {{ form_end(form) }}
+	{# Barre de recherche #}
+	<form method="GET" class="mb-4">
+		<div class="input-group">
+			<input type="search" name="search_data[q]" class="form-control" placeholder="{{ 'search.placeholder' | trans }}" value="{{ app.request.query.get('search_data') ? app.request.query.get('search_data')['q'] : '' }}">
+			<button type="submit" class="btn btn-primary px-4">
+				🔍
+				{{ 'search.button' | trans }}
+			</button>
+		</div>
+	</form>
 
-    {% if pagination.totalItemCount == 0 %}
-        <div class="alert alert-info rounded-3">
-            {{ 'theme.noSubject' | trans }}
-        </div>
-    {% else %}
-        <div class="row g-3">
-            {% for subject in pagination %}
-                <div class="col-md-3">
-                    <a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="text-decoration-none">
-                        <div class="card rounded-4 border-0 shadow-sm text-center p-3 h-100">
-                            {% if subject.image %}
-                                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image">
-                            {% else %}
-                                <div class="subject-emoji">🌍</div>
-                            {% endif %}
-                            <h6 class="fw-bold mt-2">{{ subject.name }}</h6>
-                            <small class="text-muted">{{ subject.description | striptags | slice(0, 60) }}...</small>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+	{% if pagination.totalItemCount == 0 %}
+		<div class="alert alert-info rounded-3">
+			{{ 'theme.noSubject' | trans }}
+		</div>
+	{% else %}
+		<div class="row g-4">
+			{% for subject in pagination %}
+				<div class="col-md-4">
+					<a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="text-decoration-none">
+						<div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100">
+							{% if subject.image %}
+								<img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image mx-auto mb-3">
+							{% else %}
+								<div class="subject-emoji mb-3">🌍</div>
+							{% endif %}
+							<h5 class="fw-bold mb-2">{{ subject.name }}</h5>
+							<small class="text-muted">{{ subject.description | striptags | slice(0, 80) }}...</small>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
 
-        {# Pagination #}
-        <div class="d-flex justify-content-center mt-4">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-    {% endif %}
+		{# Pagination #}
+		<div class="d-flex justify-content-center mt-5">
+			{{ knp_pagination_render(pagination) }}
+		</div>
+	{% endif %}
 
 {% endblock %}
