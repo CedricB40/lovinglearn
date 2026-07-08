@@ -171,6 +171,19 @@ flash:
     accountUpdated: "Votre profil a été mis à jour avec succès !"
     liked: "Vous avez aimé ce sujet !"
     unliked: "Vous n'aimez plus ce sujet."
+    commentAdded: "Votre commentaire a été ajouté !"
+    commentDeleted: "Le commentaire a été supprimé."
+
+comment:
+    content: "Votre commentaire"
+    placeholder: "Écrivez votre commentaire ici..."
+    notBlank: "Le commentaire ne peut pas être vide"
+    minLength: "Le commentaire doit faire au minimum 3 caractères"
+    add: "Ajouter un commentaire"
+    delete: "Supprimer"
+    postedBy: "Posté par"
+    noComment: "Aucun commentaire pour le moment. Soyez le premier !"
+    loginToComment: "pour laisser un commentaire."
 
 admin:
     title: "Dashboard Admin"

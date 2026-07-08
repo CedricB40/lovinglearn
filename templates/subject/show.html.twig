@@ -1,71 +1,130 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{ subject.name }}
-{% endblock %}
-{% block page_title %}🪐
-	{{ subject.name }}
-{% endblock %}
+{% block title %}{{ subject.name }}{% endblock %}
+{% block page_title %}🪐 {{ subject.name }}{% endblock %}
 
 {% block body %}
 
-	<div
-		class="row g-4">
+<div class="row g-4">
 
-		{# Image + infos principales #}
-		<div class="col-md-4">
-			<div class="card rounded-4 border-0 shadow-sm text-center p-4">
-				{% if subject.image %}
-					<img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image-lg">
-				{% else %}
-					<div class="subject-emoji-lg">🌍</div>
-				{% endif %}
-				<h3 class="fw-bold mt-3">{{ subject.name }}</h3>
-				<div class="text-muted">{{ subject.description }}</div>
-				<span class="badge rounded-pill badge-theme mt-2">
-					{{ subject.theme.name }}
-				</span>
+    {# Image + infos principales #}
+    <div class="col-md-4">
+        <div class="card rounded-4 border-0 shadow-sm text-center p-4">
+            {% if subject.image %}
+                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image-lg">
+            {% else %}
+                <div class="subject-emoji-lg">🌍</div>
+            {% endif %}
+            <h3 class="fw-bold mt-3">{{ subject.name }}</h3>
+            <div class="text-muted">{{ subject.description }}</div>
+            <span class="badge rounded-pill badge-theme mt-2">
+                {{ subject.theme.name }}
+            </span>
 
-				{# Bouton Like #}
-				{% if app.user %}
-					{% set isLiked = false %}
-					{% for like in subject.likes %}
-						{% if like.user == app.user %}
-							{% set isLiked = true %}
-						{% endif %}
-					{% endfor %}
+            {# Bouton Like #}
+            {% if app.user %}
+                {% set isLiked = false %}
+                {% for like in subject.likes %}
+                    {% if like.user == app.user %}
+                        {% set isLiked = true %}
+                    {% endif %}
+                {% endfor %}
 
-					<div class="mt-3">
-						<a href="{{ path('app_subject_like', {'id': subject.id}) }}" class="btn rounded-3 {{ isLiked ? 'btn-danger' : 'btn-outline-danger' }}">
-							<img src="/poucebleu.png" alt="like" style="width: 40px; height: 40px;">
-							<span class="badge bg-white text-danger ms-1">{{ subject.likes|length }}</span>
-						</a>
-					</div>
-				{% endif %}
-			</div>
+                <div class="mt-3">
+                    <a href="{{ path('app_subject_like', {'id': subject.id}) }}"
+                       class="btn rounded-3 {{ isLiked ? 'btn-danger' : 'btn-outline-danger' }}">
+                        <img src="/poucebleu.png" alt="like" style="width: 40px; height: 40px;">
+                        <span class="badge bg-white text-danger ms-1">{{ subject.likes|length }}</span>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
 
-			{# Boutons sous la carte #}
-			<div class="d-flex gap-2 mt-3 justify-content-center flex-wrap">
-				{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-					<a href="{{ path('app_subject_edit', {'id': subject.id}) }}" class="btn btn-warning rounded-3">✏️
-						{{ 'subject.show.edit' | trans }}</a>
-					{{ include('subject/_delete_form.html.twig') }}
-					<a href="{{ path('app_subject_index') }}" class="btn btn-outline-secondary rounded-3">{{ 'subject.show.back' | trans }}</a>
-				{% else %}
-					<a href="{{ path('app_theme_show_public', {'slug': subject.theme.slug}) }}" class="btn btn-outline-secondary rounded-3">{{ 'subject.show.back' | trans }}</a>
-				{% endif %}
-			</div>
-		</div>
+        {# Boutons sous la carte #}
+        <div class="d-flex gap-2 mt-3 justify-content-center flex-wrap">
+            {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                <a href="{{ path('app_subject_edit', {'id': subject.id}) }}" class="btn btn-warning rounded-3">✏️ {{ 'subject.show.edit' | trans }}</a>
+                {{ include('subject/_delete_form.html.twig') }}
+                <a href="{{ path('app_subject_index') }}" class="btn btn-outline-secondary rounded-3">{{ 'subject.show.back' | trans }}</a>
+            {% else %}
+                <a href="{{ path('app_theme_show_public', {'slug': subject.theme.slug}) }}" class="btn btn-outline-secondary rounded-3">{{ 'subject.show.back' | trans }}</a>
+            {% endif %}
+        </div>
+    </div>
 
-		{# Contenu détaillé #}
-		<div class="col-md-8">
-			<div class="card rounded-4 border-0 shadow-sm p-4 h-100">
-				<h5 class="fw-bold mb-3">📖
-					{{ 'subject.show.learnMore' | trans }}</h5>
-				<div class="subject-content">{{ subject.content | raw }}</div>
-			</div>
-		</div>
+    {# Colonne droite #}
+    <div class="col-md-8 d-flex flex-column gap-4">
 
-	</div>
+        {# Contenu détaillé #}
+        <div class="card rounded-4 border-0 shadow-sm p-4">
+            <h5 class="fw-bold mb-3">📖 {{ 'subject.show.learnMore' | trans }}</h5>
+            <div class="subject-content">{{ subject.content | raw }}</div>
+        </div>
+
+        {# Section commentaires #}
+        <div class="card rounded-4 border-0 shadow-sm p-4">
+            <h5 class="fw-bold mb-4">💬 {{ 'comment.add' | trans }} ({{ subject.comments|length }})</h5>
+
+            {# Liste des commentaires #}
+            {% if subject.comments|length == 0 %}
+                <p class="text-muted">{{ 'comment.noComment' | trans }}</p>
+            {% else %}
+                {% for comment in subject.comments %}
+                    <div class="d-flex justify-content-between align-items-start mb-3 p-3 rounded-3" style="background: rgba(255,255,255,0.05);">
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                {% if comment.user.imageName %}
+                                    <img src="/images/profiles/{{ comment.user.imageName }}"
+                                         class="rounded-circle"
+                                         style="width: 30px; height: 30px; object-fit: cover;">
+                                {% else %}
+                                    <img src="/images/profiles/default.png"
+                                         class="rounded-circle"
+                                         style="width: 30px; height: 30px; object-fit: cover;">
+                                {% endif %}
+                                <strong>{{ comment.user.firstname }} {{ comment.user.lastname }}</strong>
+                                <small class="text-muted">{{ comment.createdAt | date('d/m/Y H:i') }}</small>
+                            </div>
+                            <p class="mb-0">{{ comment.content }}</p>
+                        </div>
+
+                        {# Bouton supprimer — auteur ou admin #}
+                        {% if app.user and (comment.user == app.user or 'ROLE_ADMIN' in app.user.roles) %}
+                            <form method="post" action="{{ path('app_comment_delete', {'id': comment.id}) }}"
+                                  onsubmit="return confirm('Supprimer ce commentaire ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete_comment' ~ comment.id) }}">
+                                <button class="btn btn-sm btn-outline-danger rounded-3">🗑️</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {# Formulaire d'ajout de commentaire #}
+            {% if app.user %}
+                <hr>
+                <form method="post" action="{{ path('app_comment_add', {'id': subject.id}) }}">
+                    <div class="mb-3">
+                        <textarea name="comment[content]"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="{{ 'comment.placeholder' | trans }}"></textarea>
+                    </div>
+                    <input type="hidden" name="_token" value="{{ csrf_token('add_comment' ~ subject.id) }}">
+                    <button type="submit" class="btn btn-primary rounded-3">
+                        💬 {{ 'comment.add' | trans }}
+                    </button>
+                </form>
+            {% else %}
+                <p class="text-muted mt-3">
+                    <a href="{{ path('app_login') }}">{{ 'navBar.login' | trans }}</a>
+                    {{ 'comment.loginToComment' | trans }}
+                </p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

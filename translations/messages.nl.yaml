@@ -171,6 +171,19 @@ flash:
     accountUpdated: "Uw profiel is succesvol bijgewerkt !"
     liked: "U houdt van dit onderwerp !"
     unliked: "U houdt niet meer van dit onderwerp."
+    commentAdded: "Uw commentaar is toegevoegd !"
+    commentDeleted: "Het commentaar is verwijderd."
+
+comment:
+    content: "Uw commentaar"
+    placeholder: "Schrijf hier uw commentaar..."
+    notBlank: "Het commentaar mag niet leeg zijn"
+    minLength: "Het commentaar moet minimaal 3 tekens bevatten"
+    add: "Commentaar toevoegen"
+    delete: "Verwijderen"
+    postedBy: "Geplaatst door"
+    noComment: "Nog geen commentaar. Wees de eerste !"
+    loginToComment: "om een commentaar achter te laten."
 
 admin:
     title: "Admin Dashboard"

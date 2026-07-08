@@ -60,9 +60,16 @@ class Subject
     #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'subject')]
     private Collection $likes;
 
+    /**
+     * @var Collection<int, Comment>
+     */
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'subject')]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,6 +168,36 @@ class Subject
             // set the owning side to null (unless already changed)
             if ($like->getSubject() === $this) {
                 $like->setSubject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setSubject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getSubject() === $this) {
+                $comment->setSubject(null);
             }
         }
 
