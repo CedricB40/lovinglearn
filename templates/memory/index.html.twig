@@ -83,6 +83,15 @@
             });
         }
 
+        function speakCardName(text) {
+            if (!window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+            var utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'fr-FR';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
         function flipCard(cardEl) {
             if (lockBoard) return;
             if (cardEl.classList.contains('flipped')) return;
@@ -95,6 +104,8 @@
             backEl.innerHTML = (card.type === 'image')
                 ? '<img src="' + imageBasePath + card.image + '" alt="' + card.value + '">'
                 : '<span>' + card.value + '</span>';
+
+            speakCardName(card.value);
 
             cardEl.classList.add('flipped');
             flippedCards.push({ el: cardEl, index: index });
