@@ -10,14 +10,14 @@
 
         {% if app.user.imageName %}
             <div class="mb-3 text-center">
-                <img src="/images/profiles/{{ app.user.imageName }}"
+                <img src="{{ asset('images/profiles/' ~ app.user.imageName) }}"
                      alt="{{ app.user.firstname }}"
                      class="rounded-circle"
                      style="width: 100px; height: 100px; object-fit: cover;">
             </div>
         {% else %}
             <div class="mb-3 text-center">
-                <img src="/images/profiles/default.png"
+                <img src="{{ asset('images/profiles/default.png') }}"
                      alt="Avatar par défaut"
                      class="rounded-circle"
                      style="width: 100px; height: 100px; object-fit: cover;">

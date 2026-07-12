@@ -11,12 +11,12 @@
         <div class="col-md-3 text-center">
             <div class="card rounded-4 border-0 shadow-sm p-4">
                 {% if app.user.imageName %}
-                    <img src="/images/profiles/{{ app.user.imageName }}"
+                    <img src="{{ asset('images/profiles/' ~ app.user.imageName) }}"
                          alt="{{ app.user.firstname }}"
                          class="rounded-circle mx-auto d-block mb-3"
                          style="width: 120px; height: 120px; object-fit: cover;">
                 {% else %}
-                    <img src="/images/profiles/default.png"
+                    <img src="{{ asset('images/profiles/default.png') }}"
                          alt="Avatar par défaut"
                          class="rounded-circle mx-auto d-block mb-3"
                          style="width: 120px; height: 120px; object-fit: cover;">

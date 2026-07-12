@@ -38,6 +38,7 @@
 <script>
     var cards = {{ cards | json_encode | raw }};
     var mode  = "{{ mode }}";
+    var imageBasePath = "{{ asset('images/') }}";
 
     var deck         = [];
     var flippedCards = [];
@@ -80,7 +81,7 @@
                     '<div class="card-front">❓</div>' +
                     '<div class="card-back">' +
                         (card.type === 'image'
-                            ? '<img src="/images/' + card.image + '" alt="' + card.value + '">'
+                            ? '<img src="' + imageBasePath + card.image + '" alt="' + card.value + '">'
                             : '<span>' + card.value + '</span>'
                         ) +
                     '</div>' +

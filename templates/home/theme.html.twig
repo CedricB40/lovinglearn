@@ -15,7 +15,7 @@
         <div class="input-group">
             <input type="search" name="search_data[q]" class="form-control"
                    placeholder="{{ 'search.placeholder' | trans }}"
-                   value="{{ app.request.query.get('search_data') ? app.request.query.get('search_data')['q'] : '' }}">
+                   value="{{ app.request.query.all('search_data')['q'] ?? '' }}">
             <button type="submit" class="btn btn-primary px-4">
                 🔍 {{ 'search.button' | trans }}
             </button>
@@ -33,14 +33,14 @@
                     <a href="{{ path('app_subject_show', {'id': subject.id}) }}" class="text-decoration-none">
                         <div class="card rounded-4 border-0 shadow-sm text-center p-4 h-100">
                             {% if subject.image %}
-                                <img src="/images/{{ subject.image }}" alt="{{ subject.name }}" class="subject-image mx-auto mb-3">
+                                <img src="{{ asset('images/' ~ subject.image) }}" alt="{{ subject.name }}" class="subject-image mx-auto mb-3">
                             {% else %}
                                 <div class="subject-emoji mb-3">🌍</div>
                             {% endif %}
                             <h5 class="fw-bold mb-2">{{ subject.name }}</h5>
                             <small class="text-muted">{{ subject.description | striptags | slice(0, 80) }}...</small>
                             <div class="mt-2">
-                                <img src="/poucebleu.png" alt="like" style="width: 20px; height: 20px;">
+                                <img src="{{ asset('poucebleu.png') }}" alt="like" style="width: 20px; height: 20px;">
                                 <span class="text-muted small">{{ subject.likes|length }}</span>
                             </div>
                         </div>
