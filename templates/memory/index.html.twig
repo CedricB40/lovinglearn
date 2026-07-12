@@ -36,120 +36,123 @@
 
 {% block javascripts %}
 <script>
-    var cards = {{ cards | json_encode | raw }};
-    var mode  = "{{ mode }}";
-    var imageBasePath = "{{ asset('images/') }}";
+    (function() {
+        var cardsData = {{ cards | json_encode | raw }};
+        var mode = "{{ mode }}";
+        var imageBasePath = "{{ asset('images/') }}";
 
-    var deck         = [];
-    var flippedCards = [];
-    var matchedPairs = 0;
-    var counter      = 0;
-    var lockBoard    = false;
+        var deck         = [];
+        var flippedCards = [];
+        var matchedPairs = 0;
+        var counter      = 0;
+        var lockBoard    = false;
 
-    function createDeck() {
-        deck = [];
-        if (mode === 'nom-image') {
-            // Paires : image + nom
-            cards.forEach(function(card) {
-                deck.push({ type: 'image', value: card.name, image: card.image });
-                deck.push({ type: 'name',  value: card.name, image: card.image });
-            });
-        } else {
-            // Paires : image + image identique
-            cards.forEach(function(card) {
-                deck.push({ type: 'image', value: card.name, image: card.image });
-                deck.push({ type: 'image', value: card.name, image: card.image });
-            });
-        }
-        deck.sort(function() { return Math.random() - 0.5; });
-    }
-
-    function renderDeck() {
-        var grid = document.getElementById('memory-grid');
-        grid.innerHTML = '';
-
-        deck.forEach(function(card, index) {
-            var cardEl = document.createElement('div');
-            cardEl.classList.add('memory-card');
-            cardEl.dataset.index = index;
-            cardEl.dataset.value = card.value;
-            // Identifiant unique pour distinguer les deux cartes image×image
-            cardEl.dataset.uid   = index;
-
-            cardEl.innerHTML =
-                '<div class="card-inner">' +
-                    '<div class="card-front">❓</div>' +
-                    '<div class="card-back">' +
-                        (card.type === 'image'
-                            ? '<img src="' + imageBasePath + card.image + '" alt="' + card.value + '">'
-                            : '<span>' + card.value + '</span>'
-                        ) +
-                    '</div>' +
-                '</div>';
-
-            cardEl.addEventListener('click', function() { flipCard(cardEl); });
-            grid.appendChild(cardEl);
-        });
-    }
-
-    function flipCard(cardEl) {
-        if (lockBoard) return;
-        if (cardEl.classList.contains('flipped')) return;
-        if (cardEl.classList.contains('matched')) return;
-
-        cardEl.classList.add('flipped');
-        flippedCards.push(cardEl);
-
-        if (flippedCards.length === 2) {
-            lockBoard = true;
-            counter++;
-            document.getElementById('counter').textContent = counter;
-            checkMatch();
-        }
-    }
-
-    function checkMatch() {
-        var card1 = flippedCards[0];
-        var card2 = flippedCards[1];
-
-        // Match si même valeur ET uid différent (évite de matcher une carte avec elle-même)
-        var isMatch = card1.dataset.value === card2.dataset.value
-                   && card1.dataset.uid   !== card2.dataset.uid;
-
-        if (isMatch) {
-            card1.classList.add('matched');
-            card2.classList.add('matched');
-            matchedPairs++;
-            flippedCards = [];
-            lockBoard    = false;
-
-            if (matchedPairs === cards.length) {
-                document.getElementById('final-counter').textContent = counter;
-                document.getElementById('victory-message').classList.remove('d-none');
+        function createDeck() {
+            deck = [];
+            if (mode === 'nom-image') {
+                cardsData.forEach(function(card) {
+                    deck.push({ type: 'image', value: card.name, image: card.image });
+                    deck.push({ type: 'name',  value: card.name, image: card.image });
+                });
+            } else {
+                cardsData.forEach(function(card) {
+                    deck.push({ type: 'image', value: card.name, image: card.image });
+                    deck.push({ type: 'image', value: card.name, image: card.image });
+                });
             }
-        } else {
-            setTimeout(function() {
-                card1.classList.remove('flipped');
-                card2.classList.remove('flipped');
+            deck.sort(function() { return Math.random() - 0.5; });
+        }
+
+        function renderDeck() {
+            var grid = document.getElementById('memory-grid');
+            grid.innerHTML = '';
+
+            deck.forEach(function(card, index) {
+                var cardEl = document.createElement('div');
+                cardEl.classList.add('memory-card');
+                cardEl.dataset.index = index;
+
+                cardEl.innerHTML =
+                    '<div class="card-inner">' +
+                        '<div class="card-front">❓</div>' +
+                        '<div class="card-back"></div>' +
+                    '</div>';
+
+                cardEl.addEventListener('click', function() { flipCard(cardEl); });
+                grid.appendChild(cardEl);
+            });
+        }
+
+        function flipCard(cardEl) {
+            if (lockBoard) return;
+            if (cardEl.classList.contains('flipped')) return;
+            if (cardEl.classList.contains('matched')) return;
+
+            var index = parseInt(cardEl.dataset.index, 10);
+            var card = deck[index];
+
+            var backEl = cardEl.querySelector('.card-back');
+            backEl.innerHTML = (card.type === 'image')
+                ? '<img src="' + imageBasePath + card.image + '" alt="' + card.value + '">'
+                : '<span>' + card.value + '</span>';
+
+            cardEl.classList.add('flipped');
+            flippedCards.push({ el: cardEl, index: index });
+
+            if (flippedCards.length === 2) {
+                lockBoard = true;
+                counter++;
+                document.getElementById('counter').textContent = counter;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            var first  = flippedCards[0];
+            var second = flippedCards[1];
+
+            var isMatch = deck[first.index].value === deck[second.index].value
+                       && first.index !== second.index;
+
+            if (isMatch) {
+                first.el.classList.add('matched');
+                second.el.classList.add('matched');
+                matchedPairs++;
                 flippedCards = [];
                 lockBoard    = false;
-            }, 1000);
-        }
-    }
 
-    function restartGame() {
-        deck         = [];
-        flippedCards = [];
-        matchedPairs = 0;
-        counter      = 0;
-        lockBoard    = false;
-        document.getElementById('counter').textContent = 0;
-        document.getElementById('victory-message').classList.add('d-none');
+                if (matchedPairs === cardsData.length) {
+                    document.getElementById('final-counter').textContent = counter;
+                    document.getElementById('victory-message').classList.remove('d-none');
+                }
+            } else {
+                setTimeout(function() {
+                    first.el.classList.remove('flipped');
+                    second.el.classList.remove('flipped');
+                    first.el.querySelector('.card-back').innerHTML = '';
+                    second.el.querySelector('.card-back').innerHTML = '';
+                    flippedCards = [];
+                    lockBoard    = false;
+                }, 1000);
+            }
+        }
+
+        function restartGame() {
+            deck         = [];
+            flippedCards = [];
+            matchedPairs = 0;
+            counter      = 0;
+            lockBoard    = false;
+            document.getElementById('counter').textContent = 0;
+            document.getElementById('victory-message').classList.add('d-none');
+            createDeck();
+            renderDeck();
+        }
+
+        window.restartGame = restartGame;
+
         createDeck();
         renderDeck();
-    }
-
-    createDeck();
-    renderDeck();
+    })();
 </script>
 {% endblock %}
