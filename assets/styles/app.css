@@ -544,3 +544,41 @@ body.light-mode .alert-info {
     border-color: rgba(79, 70, 229, 0.2) !important;
     color: var(--text) !important;
 }
+
+/* ===== MEMORY GAME — RESPONSIVE MOBILE ===== */
+@media (max-width: 576px) {
+    #memory-grid {
+        gap: 0.5rem !important;
+    }
+
+    .memory-card {
+        width: 78px;
+        height: 78px;
+    }
+
+    .card-front {
+        font-size: 1.4rem;
+    }
+
+    .card-back img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .card-back span {
+        font-size: 0.65rem;
+        padding: 2px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .memory-card {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card-back img {
+        width: 75px;
+        height: 75px;
+    }
+}
